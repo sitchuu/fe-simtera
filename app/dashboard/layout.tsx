@@ -30,7 +30,7 @@ export default function DashboardLayout({
             <div className="w-px h-6 bg-zinc-200/50"></div>
 
             <button className="cursor-pointer flex items-center hover:bg-zinc-100 hover:shadow-sm p-1 rounded-full transition-all">
-              <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-blue-600 to-blue-500 flex items-center justify-center text-white text-xs font-bold shadow-sm">
+              <div className="h-8 w-8 rounded-full bg-linear-to-tr from-blue-600 to-blue-500 flex items-center justify-center text-white text-xs font-bold shadow-sm">
                 AD
               </div>
             </button>
