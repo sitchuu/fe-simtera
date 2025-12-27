@@ -40,9 +40,22 @@ export default function StatsSection() {
 
   return (
     <section id="stats" className="py-20 bg-blue-900 text-white relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 right-0 w-64 h-64 bg-purple-500 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0">
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-400 rounded-full blur-3xl opacity-10"></div>
+        <div className="absolute top-1/2 right-0 w-64 h-64 bg-purple-500 rounded-full blur-3xl opacity-10"></div>
+        
+        {/* Circle Pattern */}
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+          <svg width="100%" height="100%">
+            <defs>
+              <pattern id="circles" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="3" cy="3" r="3" fill="currentColor" className="text-white" />
+                <circle cx="13" cy="13" r="3" fill="currentColor" className="text-white" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#circles)" />
+          </svg>
+        </div>
       </div>
 
       <div ref={sectionRef} className="container mx-auto px-6 relative z-10">

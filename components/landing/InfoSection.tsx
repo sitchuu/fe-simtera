@@ -26,6 +26,7 @@ export default function InfoSection() {
           trigger: sectionRef.current,
           start: "top 80%",
         },
+        clearProps: "transform",
       }
     )
   }, [])
@@ -64,7 +65,7 @@ export default function InfoSection() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="p-8 rounded-2xl bg-zinc-50 border border-zinc-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+              className="relative p-8 rounded-2xl bg-zinc-50 border border-zinc-100 hover:shadow-2xl hover:-translate-y-2 hover:translate-x-2 hover:scale-105 hover:z-10 transition-all duration-300 group"
             >
               <div className="mb-6 p-4 bg-blue-50 rounded-xl w-fit group-hover:bg-blue-100 transition-colors">
                 {feature.icon}

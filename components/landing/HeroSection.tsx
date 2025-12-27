@@ -43,6 +43,8 @@ export default function HeroSection() {
           fill
           className="object-cover"
           priority
+          quality={100}
+          unoptimized
         />
         <div className="absolute inset-0 bg-blue-900/80 mix-blend-multiply"></div>
         <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent"></div>

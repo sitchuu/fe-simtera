@@ -47,7 +47,7 @@ export default function DownloadSection() {
           {downloads.map((item, index) => (
             <div
               key={index}
-              className="flex items-center p-6 bg-white rounded-xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow"
+              className="relative flex items-center p-6 bg-white rounded-xl border border-zinc-200 shadow-sm hover:shadow-2xl hover:-translate-y-2 hover:translate-x-2 hover:scale-105 hover:z-10 transition-all duration-300 group"
             >
               <div className="p-3 bg-zinc-50 rounded-lg mr-4">
                 {item.icon}
