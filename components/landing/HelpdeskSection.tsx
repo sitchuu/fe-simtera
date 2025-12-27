@@ -17,7 +17,7 @@ export default function HelpdeskSection() {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Admin SPI */}
-          <div className="p-8 rounded-2xl bg-zinc-50 border border-zinc-100 text-center hover:shadow-lg transition-shadow">
+          <div className="relative p-8 rounded-2xl bg-zinc-50 border border-zinc-100 text-center hover:shadow-2xl hover:-translate-y-2 hover:translate-x-2 hover:scale-105 hover:z-10 transition-all duration-300 group">
             <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
               <ShieldCheckIcon className="h-8 w-8" />
             </div>
@@ -36,8 +36,8 @@ export default function HelpdeskSection() {
           </div>
 
           {/* Tim IT */}
-          <div className="p-8 rounded-2xl bg-zinc-50 border border-zinc-100 text-center hover:shadow-lg transition-shadow">
-            <div className="w-16 h-16 bg-purple-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="relative p-8 rounded-2xl bg-zinc-50 border border-zinc-100 text-center hover:shadow-2xl hover:-translate-y-2 hover:translate-x-2 hover:scale-105 hover:z-10 transition-all duration-300 group">
+            <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
               <LaptopIcon className="h-8 w-8" />
             </div>
             <h3 className="text-xl font-bold text-zinc-900 mb-2">Tim IT (Teknis)</h3>
