@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, BookOpen } from "lucide-react"
 import { useEffect, useRef } from "react"
@@ -47,33 +48,35 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 text-center md:text-left mt-12">
+      <div className="relative z-10 container mx-auto px-10 text-center md:text-left mt-12">
         <div className="max-w-3xl">
           <h1
             ref={titleRef}
-            className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg"
+            className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg"
           >
             Sistem Informasi Manajemen Risiko Terintegrasi <br />
           </h1>
           <p
             ref={subtitleRef}
-            className="text-lg md:text-xl text-zinc-200 mb-8 leading-relaxed max-w-2xl drop-shadow-md"
+            className="text-md md:text-md text-zinc-200 mb-8 leading-relaxed max-w-2xl drop-shadow-md"
           >
             Implementasi Digital SK Kepala Balai Nomor /D7.5/KP Tahun 2024
             tentang Petunjuk Pelaksanaan Manajemen Risiko.
           </p>
           <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4">
-            <Button
-              size="lg"
-              className="cursor-pointer bg-blue-600 hover:bg-blue-500 text-white font-bold text-lg px-8 py-6 rounded-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-            >
-              MASUK APLIKASI
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link href="/login">
+              <Button
+                size="lg"
+                className="cursor-pointer bg-blue-600 hover:bg-blue-500 text-white font-bold text-md px-8 py-6 rounded-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group"
+              >
+                MASUK APLIKASI
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
+            </Link>
             <Button
               variant="outline"
               size="lg"
-              className="cursor-pointer bg-white/10 hover:bg-white/20 text-white border-white/30 backdrop-blur-sm font-semibold text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className="cursor-pointer bg-white/10 hover:bg-white/20 text-white border-white/30 backdrop-blur-sm font-semibold text-md px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <BookOpen className="mr-2 h-5 w-5" />
               Lihat Panduan

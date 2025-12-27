@@ -241,7 +241,7 @@ const Navbar: React.FC = () => {
           </div>
 
           <Link href="/login">
-            <Button className="cursor-pointer bg-white text-blue-600 hover:bg-blue-50 font-semibold shadow-md transition-all">
+            <Button className="cursor-pointer bg-transparent text-gray-200 border border-gray-200 hover:bg-white/10 hover:text-white font-semibold rounded-full transition-all -mt-2">
               Login
             </Button>
           </Link>
