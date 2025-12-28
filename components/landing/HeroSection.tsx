@@ -60,16 +60,16 @@ export default function HeroSection() {
           </h1>
           <p
             ref={subtitleRef}
-            className="text-md md:text-md text-zinc-200 mb-8 leading-relaxed max-w-2xl drop-shadow-md"
+            className="text-md md:text-md text-zinc-200 mb-16 leading-relaxed max-w-2xl drop-shadow-md"
           >
             Implementasi Digital SK Kepala Balai Nomor /D7.5/KP Tahun 2024
             tentang Petunjuk Pelaksanaan Manajemen Risiko.
           </p>
           <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4">
-            <Link href="/login">
+            <Link href="/login" className="w-full sm:w-auto">
               <Button
                 size="lg"
-                className="cursor-pointer bg-blue-600 hover:bg-blue-500 text-white font-bold text-md px-8 py-6 rounded-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group"
+                className="cursor-pointer bg-blue-600 hover:bg-blue-500 text-white font-bold text-md px-8 py-6 rounded-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group w-full sm:w-auto"
               >
                 MASUK APLIKASI
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -78,7 +78,7 @@ export default function HeroSection() {
             <Button
               variant="outline"
               size="lg"
-              className="cursor-pointer bg-white/10 hover:bg-white/20 text-white border-white/30 backdrop-blur-sm font-semibold text-md px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className="cursor-pointer bg-white/10 hover:bg-white/20 text-white border-white/30 backdrop-blur-sm font-semibold text-md px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
             >
               <BookOpen className="mr-2 h-5 w-5" />
               Lihat Panduan
