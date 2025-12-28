@@ -35,9 +35,8 @@ export default function DashboardPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {/* Placeholder for value - can be parameterized later */}
               <div className="text-2xl font-bold text-zinc-900">
-                &nbsp; {/* Empty space for now to match height if no data */}
+                &nbsp;
               </div>
             </CardContent>
           </Card>

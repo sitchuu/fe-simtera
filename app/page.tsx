@@ -15,7 +15,6 @@ export default function Home() {
       <DownloadSection />
       <StatsSection />
       <HelpdeskSection />
-      
       <FooterComponent />
     </main>
   )
