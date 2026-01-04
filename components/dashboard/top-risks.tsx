@@ -1,13 +1,20 @@
 "use client"
 
+import { useState } from "react"
 import { cn } from "@/lib/utils"
+import { useScrollTrap } from "@/hooks/use-scroll-trap"
 
 const risks = [
-    { no: 1, statement: "Sasaran kinerja", level: "Sangat Tinggi" },
-    { no: 2, statement: "Sasaran kinerja", level: "Sedang" },
-    { no: 3, statement: "Sasaran kinerja", level: "Sedang" },
-    { no: 4, statement: "Sasaran kinerja", level: "Tinggi" },
-    { no: 5, statement: "Sasaran kinerja", level: "Tinggi" },
+    { no: 1, statement: "Kebakaran Server Utama", level: "Sangat Tinggi" },
+    { no: 2, statement: "Serangan Ransomware", level: "Sangat Tinggi" },
+    { no: 3, statement: "Keterlambatan Laporan Keuangan", level: "Tinggi" },
+    { no: 4, statement: "Kekurangan SDM Teknis", level: "Tinggi" },
+    { no: 5, statement: "Kerusakan AC Ruang Server", level: "Tinggi" },
+    { no: 6, statement: "Kesalahan Input Data Peserta", level: "Sedang" },
+    { no: 7, statement: "Listrik Padam > 4 Jam", level: "Sedang" },
+    { no: 8, statement: "Pencurian Aset Ringan", level: "Sedang" },
+    { no: 9, statement: "Keluhan Peserta di Medsos", level: "Sedang" },
+    { no: 10, statement: "Banjir di Area Parkir", level: "Sedang" },
 ]
 
 const levelColors: Record<string, string> = {
@@ -19,15 +26,25 @@ const levelColors: Record<string, string> = {
 }
 
 export function TopRisks() {
+    const [isHovered, setIsHovered] = useState(false)
+    const listRef = useScrollTrap(isHovered)
+
     return (
-        <div className="w-full bg-white rounded-xl shadow-sm border border-zinc-100 overflow-hidden">
-            <div className="p-4 border-b border-zinc-100">
+        <div 
+            className="w-full h-full bg-white rounded-xl shadow-sm border border-zinc-100 flex flex-col"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <div className="p-4 border-b border-zinc-100 shrink-0">
                 <h3 className="text-lg font-bold text-zinc-900">Top 10 Risiko</h3>
             </div>
 
-            <div className="w-full overflow-x-auto">
+            <div 
+                ref={listRef}
+                className="flex-1 overflow-y-auto min-h-[300px] max-h-[380px]"
+            >
                 <table className="w-full text-sm text-left">
-                    <thead className="text-zinc-500 font-medium border-b border-zinc-100">
+                    <thead className="text-zinc-500 font-medium border-b border-zinc-100 sticky top-0 bg-white z-10">
                         <tr>
                             <th className="px-4 py-3 w-12 text-center">No</th>
                             <th className="px-4 py-3">Pernyataan Risiko</th>
