@@ -20,14 +20,14 @@ export function RiskDistributionChart() {
 
     return (
         <Card className="shadow-sm">
-            <CardHeader>
+            <CardHeader className="pb-2">
                 <CardTitle>Distribusi Kategori Risiko</CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-12">
                     <p className="text-sm text-zinc-500">Jumlah laporan berdasarkan kategori</p>
 
-                    <div className="relative pt-6">
+                    <div className="relative pt-10">
                         {/* Grid Lines */}
                         <div className="absolute inset-0 flex justify-between pl-[180px] pr-[40px] pointer-events-none h-full pb-6">
                             {gridLines.map((val, i) => (
@@ -53,8 +53,10 @@ export function RiskDistributionChart() {
                                             style={{ width: `${(item.value / gridMax) * 100}%` }}
                                         >
                                              {/* Tooltip on hover */}
-                                             <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full pl-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">{item.value}</span>
+                                             <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[calc(100%+8px)] opacity-0 group-hover:opacity-100 transition-opacity z-20 pointer-events-none">
+                                                <div className="bg-zinc-800 text-white text-xs font-medium px-2 py-1 rounded shadow-sm whitespace-nowrap">
+                                                    {item.value} Laporan
+                                                </div>
                                              </div>
                                         </div>
                                     </div>

@@ -59,7 +59,7 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu className="gap-2 px-2">
+            <SidebarMenu className="gap-2 px-2 mt-3">
               {items.map((item) => {
                 const isActive = pathname === item.url
                 return (

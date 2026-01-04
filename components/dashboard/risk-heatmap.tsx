@@ -148,7 +148,7 @@ export function RiskHeatmap({ data = MOCK_RISKS }: RiskHeatmapProps) {
 
   return (
     <>
-      <Card className="w-full shadow-sm">
+      <Card className="w-full shadow-sm h-full">
         <CardHeader>
           <CardTitle>Peta Risiko (Heatmap 5x5)</CardTitle>
         </CardHeader>
@@ -163,9 +163,9 @@ export function RiskHeatmap({ data = MOCK_RISKS }: RiskHeatmapProps) {
                 </span>
               </div>
 
-              <div className="flex-1 overflow-x-auto">
+              <div className="flex-1">
                 {/* Grid Container */}
-                <div className="min-w-[420px]">
+                <div className="w-full">
                   {/* Grid Header (Col Labels) */}
                   <div className="flex mb-2 ml-[100px]">
                     <div className="flex-1 text-center text-sm font-semibold text-zinc-500 mb-1">Level Dampak</div>
