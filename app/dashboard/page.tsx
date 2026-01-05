@@ -1,20 +1,20 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Button } from "@/components/ui/button"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { RiskHeatmap } from "@/components/dashboard/risk-heatmap"
 import { TopRisks } from "@/components/dashboard/top-risks"
 import { RiskDistributionChart } from "@/components/dashboard/risk-distribution-chart"
 import { RiskControlChart } from "@/components/dashboard/risk-control-chart"
 import { FilterDropdown } from "@/components/dashboard/filter-dropdown"
-import { ChevronDown, Shield, Flame, AlertTriangle, Activity } from "lucide-react"
+import { Shield, Flame, AlertTriangle, Activity } from "lucide-react"
 import gsap from "gsap"
 
 // Mock Data for Filters
 const UNITS = [
-  "Semua Unit", "KEP", "KBT", "PEP", "TLK", "TUR", "PPM", "PPM1", 
-  "FAS", "FAS1", "MIT", "MIT1", "DAI", "DAI1", "TSP", "MES", 
+  "Semua Unit", "KEP", "KBT", "PEP", "TLK", "TUR", "PPM", "PPM1",
+  "FAS", "FAS1", "MIT", "MIT1", "DAI", "DAI1", "TSP", "MES",
   "KTL", "ELE", "OTO", "LAF", "TET", "PUM", "RBI", "SPI", "UPG"
 ]
 const TRIWULAN = ["Triwulan 1", "Triwulan 2", "Triwulan 3", "Triwulan 4"]
@@ -30,7 +30,7 @@ export default function DashboardPage() {
   const count2Ref = useRef({ value: 0 })
   const count3Ref = useRef({ value: 0 })
   const count4Ref = useRef({ value: 0 })
-  
+
   const num1Ref = useRef<HTMLDivElement>(null)
   const num2Ref = useRef<HTMLDivElement>(null)
   const num3Ref = useRef<HTMLDivElement>(null)
@@ -63,16 +63,16 @@ export default function DashboardPage() {
         <h1 className="text-3xl font-bold tracking-tight text-zinc-900">Dashboard</h1>
         <div className="flex items-center gap-2">
           {/* Unit Filter */}
-          <FilterDropdown 
+          <FilterDropdown
             label="Unit"
             value={selectedUnit}
             options={UNITS}
             onSelect={setSelectedUnit}
             className="w-[110px]"
           />
-          
+
           {/* Triwulan Filter */}
-          <FilterDropdown 
+          <FilterDropdown
             label="Triwulan"
             value={selectedTriwulan}
             options={TRIWULAN}
@@ -81,7 +81,7 @@ export default function DashboardPage() {
           />
 
           {/* Year Filter */}
-          <FilterDropdown 
+          <FilterDropdown
             label="Tahun"
             value={selectedYear}
             options={YEARS}

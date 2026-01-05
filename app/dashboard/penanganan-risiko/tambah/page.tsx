@@ -2,7 +2,7 @@
 
 import React from "react"
 import Link from "next/link"
-import { ArrowLeft, Save, Plus, Trash2, Undo2, Calendar } from "lucide-react"
+import { Save, Plus, Trash2, Undo2, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {

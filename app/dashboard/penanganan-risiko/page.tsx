@@ -22,7 +22,7 @@ export default function PenangananRisikoPage() {
                     PENANGANAN RISIKO (Risk Treatment)
                 </h1>
                 <p className="text-gray-500 mt-2 text-base">
-                    Halaman ini berisi daftar risiko yang "Wajib Diobati" (Level Tinggi/Merah atau Kontrol Tidak Efektif).
+                    Halaman ini berisi daftar risiko yang &quot;Wajib Diobati&quot; (Level Tinggi/Merah atau Kontrol Tidak Efektif).
                 </p>
             </div>
 

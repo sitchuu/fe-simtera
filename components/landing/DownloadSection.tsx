@@ -1,6 +1,6 @@
 "use client"
 
-import { FileText, Download, PlayCircle, FileSpreadsheet } from "lucide-react"
+import { FileText, Download, PlayCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function DownloadSection() {
