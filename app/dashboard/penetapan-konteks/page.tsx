@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Plus, Info, Pencil, Save, Lock } from "lucide-react"
+import { Plus, Info, Pencil, Save, Lock, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -14,9 +14,27 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { TambahSasaranModal } from "./components/TambahSasaranModal"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 export default function PenetapanKonteksPage() {
   const [isModalOpen, setIsModalOpen] = React.useState(false)
+  const [isAnggotaModalOpen, setIsAnggotaModalOpen] = React.useState(false)
+  const [isStakeholderModalOpen, setIsStakeholderModalOpen] = React.useState(false)
+  const [isRegulasiModalOpen, setIsRegulasiModalOpen] = React.useState(false)
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-20">
       {/* Header */}
@@ -143,18 +161,215 @@ export default function PenetapanKonteksPage() {
         </TabsContent>
 
         <TabsContent value="struktur">
-          <div className="p-8 text-center text-gray-500 bg-white rounded-xl border border-dashed border-gray-300">
-            Konten Struktur UPR akan ditampilkan di sini.
+          <div className="space-y-12">
+            <div>
+              <h3 className="text-xl font-bold text-gray-800 capitalize mb-1">
+                Struktur UPR (Unit Pemilik Risiko)
+              </h3>
+              <p className="text-gray-400 text-sm">
+                Menentukan siapa penanggung jawab
+              </p>
+            </div>
+
+            {/* Pemilik Risiko */}
+            <div className="space-y-6">
+              <h4 className="text-lg font-bold text-gray-700">
+                1. Pemilik Risiko (Ketua UPR)
+              </h4>
+              <div className="space-y-6">
+                <div className="w-full md:w-1/2 lg:w-1/3">
+                  <Label className="text-xs font-bold text-gray-700 mb-2 block">
+                    Jabatan:
+                  </Label>
+                  <Select>
+                    <SelectTrigger className="h-12 border-blue-300 rounded-xl text-gray-500">
+                      <SelectValue placeholder="Jabatan" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="kepala">Kepala</SelectItem>
+                      <SelectItem value="wakil">Wakil Kepala</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <Label className="text-xs font-bold text-gray-700">NIP:</Label>
+                    <Input
+                      placeholder="Masukkan NIP..."
+                      className="h-12 border-blue-300 rounded-xl"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-xs font-bold text-gray-700">Nama:</Label>
+                    <Input
+                      placeholder="Nama Pemilik Risiko..."
+                      className="h-12 border-blue-300 rounded-xl"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Pengelola Risiko */}
+            <div className="space-y-6">
+              <h4 className="text-lg font-bold text-gray-700">
+                2. Pengelola Risiko (Koordinator/Sekretaris)
+              </h4>
+              <div className="space-y-6">
+                <div className="w-full md:w-1/2 lg:w-1/3">
+                  <Label className="text-xs font-bold text-gray-700 mb-2 block">
+                    Jabatan:
+                  </Label>
+                  <Select>
+                    <SelectTrigger className="h-12 border-blue-300 rounded-xl text-gray-500">
+                      <SelectValue placeholder="Jabatan" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="sekretaris">Sekretaris</SelectItem>
+                      <SelectItem value="koordinator">Koordinator</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <Label className="text-xs font-bold text-gray-700">NIP:</Label>
+                    <Input
+                      placeholder="Masukkan NIP..."
+                      className="h-12 border-blue-300 rounded-xl"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-xs font-bold text-gray-700">Nama:</Label>
+                    <Input
+                      placeholder="Nama Pemilik Risiko..."
+                      className="h-12 border-blue-300 rounded-xl"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Anggota Tim */}
+            <div className="space-y-6">
+              <h4 className="text-lg font-bold text-gray-700">
+                3. Anggota Tim (Opsional)
+              </h4>
+              <div>
+                <Button
+                  className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-md h-10 px-4 text-xs font-medium"
+                  onClick={() => setIsAnggotaModalOpen(true)}
+                >
+                  <Plus className="mr-2 h-4 w-4" />
+                  Tambah Anggota
+                </Button>
+              </div>
+            </div>
           </div>
         </TabsContent>
-        <TabsContent value="stakeholder">
-          <div className="p-8 text-center text-gray-500 bg-white rounded-xl border border-dashed border-gray-300">
-            Konten Stakeholder akan ditampilkan di sini.
+        <TabsContent value="stakeholder" className="mt-8 space-y-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+              <h3 className="text-xl font-bold text-gray-800 uppercase">
+                DAFTAR PEMANGKU KEPENTINGAN (STAKEHOLDER)
+              </h3>
+              <p className="text-gray-400 text-sm mt-1">
+                Mengidentifikasi pihak yang berinteraksi.
+              </p>
+            </div>
+            <Button
+              className="bg-blue-500 hover:bg-blue-600 text-white shadow-md"
+              onClick={() => setIsStakeholderModalOpen(true)}
+            >
+              <Plus className="mr-2 h-4 w-4" />
+              Tambah Stakeholder
+            </Button>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <Table>
+              <TableHeader className="bg-gray-50">
+                <TableRow>
+                  <TableHead className="w-12.5 text-center">No</TableHead>
+                  <TableHead>Nama Stakeholder</TableHead>
+                  <TableHead>Hubungan / Keterangan</TableHead>
+                  <TableHead className="w-25 text-center">Aksi</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {[1, 2, 3, 4, 5].map((item) => (
+                  <TableRow key={item}>
+                    <TableCell className="text-center font-medium">{item}.</TableCell>
+                    <TableCell>Peserta Diklat</TableCell>
+                    <TableCell className="text-gray-600">
+                      Penerima Layanan
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center justify-center gap-2">
+                        <button className="text-blue-500 hover:text-blue-700 transition-colors p-1 rounded-md hover:bg-blue-50">
+                          <Pencil className="h-5 w-5" />
+                        </button>
+                        <button className="text-orange-500 hover:text-orange-700 transition-colors p-1 rounded-md hover:bg-orange-50">
+                          <Info className="h-5 w-5" />
+                        </button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </div>
         </TabsContent>
-        <TabsContent value="regulasi">
-          <div className="p-8 text-center text-gray-500 bg-white rounded-xl border border-dashed border-gray-300">
-            Konten Regulasi akan ditampilkan di sini.
+        <TabsContent value="regulasi" className="mt-8 space-y-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+              <h3 className="text-xl font-bold text-gray-800 uppercase">
+                DAFTAR PERATURAN PERUNDANG-UNDANGAN TERKAIT
+              </h3>
+              <p className="text-gray-400 text-sm mt-1">
+                Mengidentifikasi dasar hukum kerja.
+              </p>
+            </div>
+            <Button
+              className="bg-blue-500 hover:bg-blue-600 text-white shadow-md"
+              onClick={() => setIsRegulasiModalOpen(true)}
+            >
+              <Plus className="mr-2 h-4 w-4" />
+              Tambah Regulasi
+            </Button>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <Table>
+              <TableHeader className="bg-gray-50">
+                <TableRow>
+                  <TableHead className="w-12.5 text-center">No</TableHead>
+                  <TableHead>Nama Peraturan / UU</TableHead>
+                  <TableHead>Tentang / Isi Ringkas</TableHead>
+                  <TableHead className="w-25 text-center">Aksi</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {[1, 2, 3, 4, 5].map((item) => (
+                  <TableRow key={item}>
+                    <TableCell className="text-center font-medium">{item}.</TableCell>
+                    <TableCell>Permendikbud No 26/2020</TableCell>
+                    <TableCell className="text-gray-600">
+                      OTK UPT Kemendikbud
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center justify-center gap-2">
+                        <button className="text-blue-500 hover:text-blue-700 transition-colors p-1 rounded-md hover:bg-blue-50">
+                          <Pencil className="h-5 w-5" />
+                        </button>
+                        <button className="text-orange-500 hover:text-orange-700 transition-colors p-1 rounded-md hover:bg-orange-50">
+                          <Info className="h-5 w-5" />
+                        </button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </div>
         </TabsContent>
       </Tabs>
@@ -171,6 +386,165 @@ export default function PenetapanKonteksPage() {
         </Button>
       </div>
       <TambahSasaranModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <TambahAnggotaModal isOpen={isAnggotaModalOpen} onClose={() => setIsAnggotaModalOpen(false)} />
+      <TambahStakeholderModal isOpen={isStakeholderModalOpen} onClose={() => setIsStakeholderModalOpen(false)} />
+      <TambahRegulasiModal isOpen={isRegulasiModalOpen} onClose={() => setIsRegulasiModalOpen(false)} />
     </div>
+  )
+}
+
+function TambahAnggotaModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden gap-0 rounded-2xl">
+        <DialogHeader className="px-8 pt-8 pb-4 flex flex-row items-center justify-between">
+          <DialogTitle className="text-2xl font-bold text-gray-700">
+            Tambah Anggota Tim
+          </DialogTitle>
+        </DialogHeader>
+
+        <div className="px-8 py-4 space-y-6">
+          {/* 1. Jabatan */}
+          <div className="space-y-3">
+            <Label className="text-base font-bold text-gray-700">
+              1. Jabatan
+            </Label>
+            <Select>
+              <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-xl text-base text-gray-500">
+                <SelectValue placeholder="Jabatan" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="anggota">Anggota</SelectItem>
+                <SelectItem value="staff">Staff</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* 2. NIP */}
+          <div className="space-y-3">
+            <Label htmlFor="nip" className="text-base font-bold text-gray-700">
+              2. NIP
+            </Label>
+            <Input
+              id="nip"
+              placeholder="Masukkan NIP..."
+              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl placeholder:text-gray-300"
+            />
+          </div>
+
+          {/* 3. Nama */}
+          <div className="space-y-3">
+            <Label htmlFor="nama" className="text-base font-bold text-gray-700">
+              3. Nama
+            </Label>
+            <Input
+              id="nama"
+              placeholder="Nama Anggota..."
+              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl placeholder:text-gray-300"
+            />
+          </div>
+        </div>
+
+        <div className="px-8 py-6 flex justify-end">
+          <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-8 py-6 text-base font-medium shadow-lg shadow-blue-500/20">
+            <Save className="mr-2 h-5 w-5" />
+            Simpan
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+function TambahStakeholderModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden gap-0 rounded-2xl">
+        <DialogHeader className="px-8 pt-8 pb-4 flex flex-row items-center justify-between">
+          <DialogTitle className="text-2xl font-bold text-gray-700">
+            Tambah Stakeholder
+          </DialogTitle>
+        </DialogHeader>
+
+        <div className="px-8 py-4 space-y-6">
+          {/* 1. Nama Stakeholder */}
+          <div className="space-y-3">
+            <Label htmlFor="nama-stakeholder" className="text-base font-bold text-gray-700">
+              1. Nama Stakeholder
+            </Label>
+            <Input
+              id="nama-stakeholder"
+              placeholder="Masukan Nama..."
+              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl placeholder:text-gray-300"
+            />
+          </div>
+
+          {/* 2. Hubungan / Keterangan */}
+          <div className="space-y-3">
+            <Label htmlFor="hubungan" className="text-base font-bold text-gray-700">
+              2. Hubungan / Keterangan
+            </Label>
+            <Textarea
+              id="hubungan"
+              className="min-h-[60px] resize-none border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl"
+            />
+          </div>
+        </div>
+
+        <div className="px-8 py-6 flex justify-end">
+          <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-8 py-6 text-base font-medium shadow-lg shadow-blue-500/20">
+            <Save className="mr-2 h-5 w-5" />
+            Simpan
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+function TambahRegulasiModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden gap-0 rounded-2xl">
+        <DialogHeader className="px-8 pt-8 pb-4 flex flex-row items-center justify-between">
+          <DialogTitle className="text-2xl font-bold text-gray-700">
+            Tambah Regulasi
+          </DialogTitle>
+        </DialogHeader>
+
+        <div className="px-8 py-4 space-y-6">
+          {/* 1. Nama Peraturan / UU */}
+          <div className="space-y-3">
+            <Label htmlFor="nama-peraturan" className="text-base font-bold text-gray-700">
+              1. Nama Peraturan / UU
+            </Label>
+            <Input
+              id="nama-peraturan"
+              placeholder="Masukan Nama..."
+              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl placeholder:text-gray-300"
+            />
+          </div>
+
+          {/* 2. Tentang / Isi Ringkas */}
+          <div className="space-y-3">
+            <Label htmlFor="tentang" className="text-base font-bold text-gray-700">
+              2. Tentang / Isi Ringkas
+            </Label>
+            <Input
+              id="tentang"
+              placeholder="Masukan Isi..."
+              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl placeholder:text-gray-300"
+            />
+          </div>
+        </div>
+
+        <div className="px-8 py-6 flex justify-end">
+          <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-8 py-6 text-base font-medium shadow-lg shadow-blue-500/20">
+            <Save className="mr-2 h-5 w-5" />
+            Simpan
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
   )
 }
