@@ -12,6 +12,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { DashboardFilters } from "@/components/dashboard/dashboard-filters"
+import { RiskFormWizard } from "@/components/dashboard/risk-form-wizard"
 
 // Mock Data
 const RISKS = [
@@ -81,6 +82,7 @@ export default function ProfilRisikoPage() {
   const [selectedUnit, setSelectedUnit] = useState("Semua Unit")
   const [selectedTriwulan, setSelectedTriwulan] = useState("Triwulan 4")
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString())
+  const [isWizardOpen, setIsWizardOpen] = useState(false)
 
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-20">
@@ -102,7 +104,10 @@ export default function ProfilRisikoPage() {
         
         {/* Add Button Row */}
         <div className="flex justify-end pt-2">
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white shadow-md">
+          <Button 
+            className="bg-blue-500 hover:bg-blue-600 text-white shadow-md"
+            onClick={() => setIsWizardOpen(true)}
+          >
             <Plus className="mr-2 h-4 w-4" />
             Tambah
           </Button>
@@ -161,6 +166,9 @@ export default function ProfilRisikoPage() {
           </TableBody>
         </Table>
       </div>
+
+      {/* Wizard Modal */}
+      <RiskFormWizard open={isWizardOpen} onOpenChange={setIsWizardOpen} />
     </div>
   )
 }
