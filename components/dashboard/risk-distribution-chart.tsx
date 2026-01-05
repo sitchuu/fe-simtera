@@ -29,7 +29,7 @@ export function RiskDistributionChart() {
 
                     <div className="relative pt-10">
                         {/* Grid Lines */}
-                        <div className="absolute inset-0 flex justify-between pl-[180px] pr-[40px] pointer-events-none h-full pb-6">
+                        <div className="absolute inset-0 flex justify-between pl-45 pr-10 pointer-events-none h-full pb-6">
                             {gridLines.map((val, i) => (
                                 <div key={i} className="h-full border-l border-zinc-100 relative">
                                     <span className="absolute -top-6 -left-2 text-xs text-zinc-400">{Math.round(val)}</span>
@@ -41,7 +41,7 @@ export function RiskDistributionChart() {
                             {data.map((item, index) => (
                                 <div key={index} className="flex items-center gap-4 text-sm">
                                     {/* Label */}
-                                    <div className="w-[180px] text-right font-medium text-zinc-600 shrink-0">
+                                    <div className="w-45 text-right font-medium text-zinc-600 shrink-0">
                                         {item.label}
                                     </div>
 

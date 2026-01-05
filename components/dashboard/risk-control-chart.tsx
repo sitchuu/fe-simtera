@@ -28,7 +28,7 @@ export function RiskControlChart() {
                   strokeWidth="20"
                   strokeDasharray={`${85 * 2.51} 251`} // 2 * pi * 40 = ~251
                   strokeLinecap="round"
-                  className="transition-all duration-300 ease-out group-hover:stroke-[22]"
+                  className="transition-all duration-300 ease-out group-hover:stroke-[22px]"
                 />
               </svg>
               {/* Percentage Text */}
@@ -56,7 +56,7 @@ export function RiskControlChart() {
                   strokeWidth="20"
                   strokeDasharray={`${100 * 2.51} 251`}
                   strokeLinecap="round"
-                  className="transition-all duration-300 ease-out group-hover:stroke-[22]"
+                  className="transition-all duration-300 ease-out group-hover:stroke-[22px]"
                 />
               </svg>
               {/* Percentage Text */}
