@@ -13,8 +13,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { TambahSasaranModal } from "./components/TambahSasaranModal"
 
 export default function PenetapanKonteksPage() {
+  const [isModalOpen, setIsModalOpen] = React.useState(false)
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-20">
       {/* Header */}
@@ -96,7 +98,10 @@ export default function PenetapanKonteksPage() {
                 *Tips: Mengacu pada dokumen Renstra / Perjanjian Kinerja Unit.
               </p>
             </div>
-            <Button className="bg-blue-500 hover:bg-blue-600 text-white shadow-md">
+            <Button
+              className="bg-blue-500 hover:bg-blue-600 text-white shadow-md"
+              onClick={() => setIsModalOpen(true)}
+            >
               <Plus className="mr-2 h-4 w-4" />
               Tambah Sasaran
             </Button>
@@ -165,6 +170,7 @@ export default function PenetapanKonteksPage() {
           Kunci & Finalisasi
         </Button>
       </div>
+      <TambahSasaranModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   )
 }
