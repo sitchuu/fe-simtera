@@ -167,7 +167,7 @@ export function RiskHeatmap({ data = MOCK_RISKS }: RiskHeatmapProps) {
                 {/* Grid Container */}
                 <div className="w-full">
                   {/* Grid Header (Col Labels) */}
-                  <div className="flex mb-2 ml-[100px]">
+                  <div className="flex mb-2 ml-25">
                     <div className="flex-1 text-center text-sm font-semibold text-zinc-500 mb-1">Level Dampak</div>
                   </div>
                   <div className="grid grid-cols-[100px_1fr_1fr_1fr_1fr_1fr] gap-1 text-xs">
@@ -222,7 +222,7 @@ export function RiskHeatmap({ data = MOCK_RISKS }: RiskHeatmapProps) {
       {/* Custom Non-Modal Side Panel */}
       <div 
         className={cn(
-          "fixed inset-y-0 right-0 z-50 w-[400px] sm:w-[500px] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l",
+          "fixed inset-y-0 right-0 z-50 w-100 sm:w-125 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out border-l",
           isPanelOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
@@ -258,10 +258,10 @@ export function RiskHeatmap({ data = MOCK_RISKS }: RiskHeatmapProps) {
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead className="w-[60px]">Kode</TableHead>
+                          <TableHead className="w-15">Kode</TableHead>
                           <TableHead>Pernyataan Risiko</TableHead>
-                          <TableHead className="w-[80px]">Unit</TableHead>
-                          <TableHead className="w-[50px] text-right">Aksi</TableHead>
+                          <TableHead className="w-20">Unit</TableHead>
+                          <TableHead className="w-12.5 text-right">Aksi</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>

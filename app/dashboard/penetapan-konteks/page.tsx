@@ -53,7 +53,7 @@ export default function PenetapanKonteksPage() {
         </label>
         <Textarea
           placeholder="Isi dengan tugas dan fungsi unit terkait"
-          className="min-h-[150px] resize-y text-base border-blue-300 focus:border-blue-500 rounded-lg"
+          className="min-h-37.5 resize-y text-base border-blue-300 focus:border-blue-500 rounded-lg"
         />
       </div>
 
@@ -106,10 +106,10 @@ export default function PenetapanKonteksPage() {
             <Table>
               <TableHeader className="bg-gray-50">
                 <TableRow>
-                  <TableHead className="w-[50px] text-center">No</TableHead>
-                  <TableHead className="w-[150px]">Kode Risiko</TableHead>
+                  <TableHead className="w-12.5 text-center">No</TableHead>
+                  <TableHead className="w-37.5">Kode Risiko</TableHead>
                   <TableHead>Uraian Sasaran Strategis</TableHead>
-                  <TableHead className="w-[100px] text-center">Aksi</TableHead>
+                  <TableHead className="w-25 text-center">Aksi</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
