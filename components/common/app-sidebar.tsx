@@ -20,7 +20,7 @@ const items = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
   { title: "Penetapan Konteks", url: "/dashboard/penetapan-konteks", icon: Folder },
   { title: "Profil Risiko", url: "/dashboard/profil-risiko", icon: Folder },
-  { title: "Penanganan Risiko", url: "/dashboard/penanganan", icon: Folder },
+  { title: "Penanganan Risiko", url: "/dashboard/penanganan-risiko", icon: Folder },
   { title: "Pemantauan & Riviu", url: "/dashboard/pemantauan", icon: Folder },
   { title: "Laporan", url: "/dashboard/laporan", icon: Folder },
 ]

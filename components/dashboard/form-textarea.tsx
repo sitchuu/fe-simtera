@@ -4,7 +4,7 @@ import * as React from "react"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
 
-interface FormTextareaProps extends React.ComponentProps<typeof Textarea> {}
+type FormTextareaProps = React.ComponentProps<typeof Textarea>
 
 export function FormTextarea({ className, ...props }: FormTextareaProps) {
   return (

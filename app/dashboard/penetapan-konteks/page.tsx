@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Plus, Info, Pencil, Save, Lock, X } from "lucide-react"
+import { Plus, Info, Pencil, Save, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
