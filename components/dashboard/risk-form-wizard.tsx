@@ -18,8 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Plus, Trash2, Pencil, Check, Info } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { Plus, Pencil, Info } from "lucide-react"
 
 interface RiskFormWizardProps {
   open: boolean
@@ -34,28 +33,28 @@ const EFEKTIVITAS_OPTIONS = ["Sudah Efektif", "Kurang Efektif", "Tidak Efektif"]
 
 export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
   const [step, setStep] = useState(1)
-  
+
   // --- Form State ---
   // Step 1
   const [sasaran, setSasaran] = useState("")
   const [uraianKegiatan, setUraianKegiatan] = useState("")
-  
+
   // Step 2
   const [sumberRisiko, setSumberRisiko] = useState<"Internal" | "Eksternal">("Internal")
   const [pemilikRisiko, setPemilikRisiko] = useState("")
   const [uraianRisiko, setUraianRisiko] = useState("")
   const [dampakRisiko, setDampakRisiko] = useState("")
-  
+
   // Step 3
-  const [causes, setCauses] = useState<{ id: number; text: string }[]>([
+  const [causes] = useState<{ id: number; text: string }[]>([
     { id: 1, text: "Lorem ipsum Dolor sit amet" },
     { id: 2, text: "Lorem ipsum Dolor sit amet" },
   ])
-  
+
   // Step 4
   const [kemungkinan, setKemungkinan] = useState("")
   const [dampak, setDampak] = useState("")
-  
+
   // Step 5
   const [kontrol, setKontrol] = useState("")
   const [efektivitas, setEfektivitas] = useState("")
@@ -94,8 +93,8 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
       </div>
       <div className="space-y-6">
         <label className="text-base font-semibold text-gray-700">2. Uraian Kegiatan</label>
-        <FormTextarea 
-          placeholder="Masukkan Uraian..." 
+        <FormTextarea
+          placeholder="Masukkan Uraian..."
           className="min-h-[120px]"
           value={uraianKegiatan}
           onChange={(e) => setUraianKegiatan(e.target.value)}
@@ -111,9 +110,9 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
           <label className="text-base font-semibold text-gray-700">1. Sumber Risiko</label>
           <div className="space-y-2">
             <label className="flex items-center space-x-2 cursor-pointer">
-              <input 
-                type="radio" 
-                name="sumber" 
+              <input
+                type="radio"
+                name="sumber"
                 className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
                 checked={sumberRisiko === "Internal"}
                 onChange={() => setSumberRisiko("Internal")}
@@ -121,9 +120,9 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
               <span className="text-gray-600">Internal</span>
             </label>
             <label className="flex items-center space-x-2 cursor-pointer">
-              <input 
-                type="radio" 
-                name="sumber" 
+              <input
+                type="radio"
+                name="sumber"
                 className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
                 checked={sumberRisiko === "Eksternal"}
                 onChange={() => setSumberRisiko("Eksternal")}
@@ -134,8 +133,8 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
         </div>
         <div className="space-y-4">
           <label className="text-base font-semibold text-gray-700">2. Pemilik Risiko</label>
-          <Input 
-            placeholder="Masukan Uraian..." 
+          <Input
+            placeholder="Masukan Uraian..."
             className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
             value={pemilikRisiko}
             onChange={(e) => setPemilikRisiko(e.target.value)}
@@ -145,8 +144,8 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
 
       <div className="space-y-4">
         <label className="text-base font-semibold text-gray-700">3. Uraian Risiko</label>
-        <FormTextarea 
-          placeholder="Masukkan Uraian..." 
+        <FormTextarea
+          placeholder="Masukkan Uraian..."
           value={uraianRisiko}
           onChange={(e) => setUraianRisiko(e.target.value)}
         />
@@ -154,8 +153,8 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
 
       <div className="space-y-4">
         <label className="text-base font-semibold text-gray-700">4. Dampak Risiko</label>
-        <FormTextarea 
-          placeholder="Masukkan Uraian..." 
+        <FormTextarea
+          placeholder="Masukkan Uraian..."
           value={dampakRisiko}
           onChange={(e) => setDampakRisiko(e.target.value)}
         />
@@ -194,7 +193,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
           </tbody>
         </table>
       </div>
-      
+
       <Button className="bg-blue-500 hover:bg-blue-600 text-white">
         <Plus className="mr-2 h-4 w-4" />
         Tambah Penyebab Lain
@@ -235,11 +234,11 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
 
       <div className="space-y-4">
         <label className="text-base font-semibold text-gray-700">3. Hasil</label>
-        <Input 
-          placeholder="Hasil..." 
+        <Input
+          placeholder="Hasil..."
           className="border-gray-300 bg-gray-50"
           readOnly
-          value={kemungkinan && dampak ? "Tinggi" : ""} 
+          value={kemungkinan && dampak ? "Tinggi" : ""}
         />
       </div>
     </div>
@@ -249,8 +248,8 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
     <div className="space-y-6 py-4">
       <div className="space-y-4">
         <label className="text-base font-semibold text-gray-700">1. Apa kontrol yang sudah ada?</label>
-        <FormTextarea 
-          placeholder="Masukkan Uraian..." 
+        <FormTextarea
+          placeholder="Masukkan Uraian..."
           className="min-h-[120px]"
           value={kontrol}
           onChange={(e) => setKontrol(e.target.value)}
@@ -291,7 +290,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
             {getTitle()}
           </DialogTitle>
         </DialogHeader>
-        
+
         <div className="px-6 max-h-[70vh] overflow-y-auto">
           {step === 1 && renderStep1()}
           {step === 2 && renderStep2()}
