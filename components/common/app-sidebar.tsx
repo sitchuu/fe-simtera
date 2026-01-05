@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Home, Settings, LogOut, Folder, ChevronRight } from "lucide-react"
+import { Home, Settings, LogOut, Folder } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -21,7 +21,7 @@ const items = [
   { title: "Penetapan Konteks", url: "/dashboard/penetapan-konteks", icon: Folder },
   { title: "Profil Risiko", url: "/dashboard/profil-risiko", icon: Folder },
   { title: "Penanganan Risiko", url: "/dashboard/penanganan-risiko", icon: Folder },
-  { title: "Pemantauan & Riviu", url: "/dashboard/pemantauan", icon: Folder },
+  { title: "Pemantauan & Tinjau", url: "/dashboard/pemantauan", icon: Folder },
   { title: "Laporan", url: "/dashboard/laporan", icon: Folder },
 ]
 
@@ -72,9 +72,6 @@ export function AppSidebar() {
                       <Link href={item.url}>
                         <item.icon className={isActive ? "text-blue-600" : "text-white"} />
                         <span>{item.title}</span>
-                        {item.title === "Pemantauan & Riviu" && (
-                          <ChevronRight className="ml-auto h-4 w-4 opacity-70" />
-                        )}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
