@@ -32,20 +32,16 @@ export default function PenetapanKonteksPage() {
         <h2 className="text-lg font-bold text-gray-700 mb-4 uppercase tracking-wide">
           INFORMASI UMUM UNIT
         </h2>
-        <div className="space-y-2">
-          <div className="flex items-center gap-4">
-            <label className="w-40 text-base font-bold text-gray-700">
-              Tahun Periode:
-            </label>
-            <div className="text-base text-gray-900 font-medium">2025</div>
-          </div>
-          <div className="flex items-center gap-4">
-            <label className="w-40 text-base font-bold text-gray-700">
-              Unit Organisasi:
-            </label>
-            <div className="text-base text-gray-900 font-medium">
-              BBPPMPV BMTI
-            </div>
+        <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 items-center">
+          <label className="text-base font-bold text-gray-700">
+            Tahun Periode:
+          </label>
+          <div className="text-base text-gray-900 font-medium">2025</div>
+          <label className="text-base font-bold text-gray-700">
+            Unit Organisasi:
+          </label>
+          <div className="text-base text-gray-900 font-medium">
+            BBPPMPV BMTI
           </div>
         </div>
       </div>
@@ -66,25 +62,25 @@ export default function PenetapanKonteksPage() {
         <TabsList className="w-full justify-start h-auto p-0 bg-transparent border-b-2 border-gray-200 rounded-none space-x-8 mb-8">
           <TabsTrigger
             value="sasaran"
-            className="px-0 py-3 rounded-none border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:text-blue-500 text-base font-bold text-blue-400 hover:text-blue-500 bg-transparent shadow-none transition-all -mb-0.5"
+            className="px-0 py-3 rounded-none border-t-0 border-x-0 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:text-blue-500 text-base font-bold text-blue-400 hover:text-blue-500 bg-transparent shadow-none data-[state=active]:shadow-none data-[state=active]:bg-transparent transition-all -mb-0.5"
           >
             1. Sasaran Organisasi
           </TabsTrigger>
           <TabsTrigger
             value="struktur"
-            className="px-0 py-3 rounded-none border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:text-blue-500 text-base font-bold text-blue-400 hover:text-blue-500 bg-transparent shadow-none transition-all -mb-0.5"
+            className="px-0 py-3 rounded-none border-t-0 border-x-0 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:text-blue-500 text-base font-bold text-blue-400 hover:text-blue-500 bg-transparent shadow-none data-[state=active]:shadow-none data-[state=active]:bg-transparent transition-all -mb-0.5"
           >
             2. Struktur UPR
           </TabsTrigger>
           <TabsTrigger
             value="stakeholder"
-            className="px-0 py-3 rounded-none border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:text-blue-500 text-base font-bold text-blue-400 hover:text-blue-500 bg-transparent shadow-none transition-all -mb-0.5"
+            className="px-0 py-3 rounded-none border-t-0 border-x-0 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:text-blue-500 text-base font-bold text-blue-400 hover:text-blue-500 bg-transparent shadow-none data-[state=active]:shadow-none data-[state=active]:bg-transparent transition-all -mb-0.5"
           >
             3. Stakeholder
           </TabsTrigger>
           <TabsTrigger
             value="regulasi"
-            className="px-0 py-3 rounded-none border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:text-blue-500 text-base font-bold text-blue-400 hover:text-blue-500 bg-transparent shadow-none transition-all -mb-0.5"
+            className="px-0 py-3 rounded-none border-t-0 border-x-0 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:text-blue-500 text-base font-bold text-blue-400 hover:text-blue-500 bg-transparent shadow-none data-[state=active]:shadow-none data-[state=active]:bg-transparent transition-all -mb-0.5"
           >
             4. Regulasi
           </TabsTrigger>
