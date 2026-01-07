@@ -1,7 +1,8 @@
 import { SidebarProvider } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/common/app-sidebar" 
+import { AppSidebar } from "@/components/common/app-sidebar"
 
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader"
+import { DynamicBreadcrumb } from "@/components/common/dynamic-breadcrumb"
 
 export default function DashboardLayout({
   children,
@@ -14,6 +15,7 @@ export default function DashboardLayout({
       <main className="w-full bg-gray-50/50 min-h-screen flex flex-col">
         <DashboardHeader />
         <div className="flex-1 p-8">
+          <DynamicBreadcrumb />
           {children}
         </div>
       </main>
