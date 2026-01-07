@@ -1,9 +1,10 @@
 "use client"
 
+import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Home, Settings, LogOut, Folder } from "lucide-react"
+import { Home, Settings, LogOut, Folder, ChevronRight } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -14,7 +15,15 @@ import {
   SidebarMenuItem,
   SidebarHeader,
   SidebarFooter,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
 } from "@/components/ui/sidebar"
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
 
 const items = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
@@ -27,6 +36,11 @@ const items = [
 
 export function AppSidebar() {
   const pathname = usePathname()
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <Sidebar
@@ -84,17 +98,51 @@ export function AppSidebar() {
 
       <SidebarFooter className="p-4 mt-auto">
         <SidebarMenu className="gap-2">
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="h-10 px-4 font-normal text-white hover:bg-white/10 hover:text-white rounded-lg"
-            >
-              <Link href="/dashboard/settings">
-                <Settings className="h-5 w-5" />
-                <span>Pengaturan</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          {mounted ? (
+            <Collapsible className="group/collapsible">
+              <SidebarMenuItem>
+                <CollapsibleTrigger asChild>
+                  <SidebarMenuButton
+                    className="h-10 px-4 font-normal text-white hover:bg-white/10 hover:text-white rounded-lg w-full justify-between"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Settings className="h-5 w-5" />
+                      <span>Pengaturan</span>
+                    </div>
+                    <ChevronRight className="ml-auto h-4 w-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  </SidebarMenuButton>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <SidebarMenuSub className="border-l-white/20 ml-6 mt-1">
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton
+                        asChild
+                        className="text-white/80 hover:text-white hover:bg-white/10"
+                        isActive={pathname === "/dashboard/pengaturan/sub-kategori-risiko"}
+                      >
+                        <Link href="/dashboard/pengaturan/sub-kategori-risiko">
+                          <span>Sub Kategori Risiko</span>
+                        </Link>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </SidebarMenuItem>
+            </Collapsible>
+          ) : (
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                asChild
+                className="h-10 px-4 font-normal text-white hover:bg-white/10 hover:text-white rounded-lg"
+              >
+                <Link href="/dashboard/settings">
+                  <Settings className="h-5 w-5" />
+                  <span>Pengaturan</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          )}
+
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
