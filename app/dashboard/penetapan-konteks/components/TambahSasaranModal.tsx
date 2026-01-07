@@ -10,46 +10,101 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
-interface TambahSasaranModalProps {
+interface TambahSasaranDialogProps {
     isOpen: boolean
     onClose: () => void
 }
 
-export function TambahSasaranModal({ isOpen, onClose }: TambahSasaranModalProps) {
+const UNITS = [
+    "KEP", "KBT", "PEP", "TLK", "TUR", "PPM", "PPM1",
+    "FAS", "FAS1", "MIT", "MIT1", "DAI", "DAI1", "TSP", "MES",
+    "KTL", "ELE", "OTO", "LAF", "TET", "PUM", "RBI", "SPI", "UPG"
+]
+
+const OBJEK_RISIKO = [
+    { code: "01", label: "01 Aplikasi SPBE" },
+    { code: "02", label: "02 Infratruktur SPBE" },
+    { code: "03", label: "03 Keamanan SPBE" },
+    { code: "04", label: "04 Layanan SPBE" },
+]
+
+export function TambahSasaranDialog({ isOpen, onClose }: TambahSasaranDialogProps) {
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden gap-0 rounded-2xl">
+            <DialogContent className="sm:max-w-[800px] p-0 gap-0 rounded-2xl">
                 <DialogHeader className="px-8 pt-8 pb-4 flex flex-row items-center justify-between">
                     <DialogTitle className="text-2xl font-bold text-gray-700">
                         Tambah Sasaran
                     </DialogTitle>
-                    {/* Close button is handled by DialogPrimitive.Close inside DialogContent, 
-              but the design shows a specific X icon in a circle or similar, 
-              we can let the default close handle it or customize if needed. 
-              The default close is absolute positioned. 
-              Let's hide the default one and make a custom one if layout demands, 
-              or stick to default. The design shows a circled X. 
-              Review of the design image suggests standard X. 
-              We'll stick to default for now but ensure it looks right. 
-              Actually, the default DialogContent has a Close button absolute positioned.
-              We can just use that.
-          */}
                 </DialogHeader>
 
                 <div className="px-8 py-4 space-y-6">
-                    <div className="space-y-3">
-                        <Label htmlFor="kode-risiko" className="text-base font-bold text-gray-700">
-                            1. Kode Risiko
-                        </Label>
-                        <Input
-                            id="kode-risiko"
-                            placeholder="Masukkan Kode..."
-                            className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl placeholder:text-gray-300"
-                        />
+                    <div className="grid grid-cols-3 gap-4">
+                        <div className="space-y-3">
+                            <Label htmlFor="kode-risiko" className="text-base font-bold text-gray-700">
+                                1. Kode Risiko
+                            </Label>
+                            <Select>
+                                <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-xl text-base text-gray-500">
+                                    <SelectValue placeholder="Pilih Kode" />
+                                </SelectTrigger>
+                                <SelectContent className="z-[99999]">
+                                    <SelectItem value="a">a. Risiko fiskal</SelectItem>
+                                    <SelectItem value="b">b. Risiko kebijakan</SelectItem>
+                                    <SelectItem value="c">c. Risiko kepatuhan</SelectItem>
+                                    <SelectItem value="d">d. Risiko legal</SelectItem>
+                                    <SelectItem value="e">e. Risiko fraud</SelectItem>
+                                    <SelectItem value="f">f. Risiko reputasi</SelectItem>
+                                    <SelectItem value="g">g. Risiko operasional</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="space-y-3">
+                            <Label htmlFor="unit" className="text-base font-bold text-gray-700">
+                                Unit
+                            </Label>
+                            <Select>
+                                <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-xl text-base text-gray-500">
+                                    <SelectValue placeholder="Pilih Unit" />
+                                </SelectTrigger>
+                                <SelectContent className="z-[99999]">
+                                    {UNITS.map((unit) => (
+                                        <SelectItem key={unit} value={unit}>
+                                            {unit}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="space-y-3">
+                            <Label htmlFor="objek-risiko" className="text-base font-bold text-gray-700">
+                                Objek Risiko
+                            </Label>
+                            <Select>
+                                <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-xl text-base text-gray-500">
+                                    <SelectValue placeholder="Pilih Objek" />
+                                </SelectTrigger>
+                                <SelectContent className="z-[99999]">
+                                    {OBJEK_RISIKO.map((item) => (
+                                        <SelectItem key={item.code} value={item.code}>
+                                            {item.label}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
                     </div>
 
                     <div className="space-y-3">

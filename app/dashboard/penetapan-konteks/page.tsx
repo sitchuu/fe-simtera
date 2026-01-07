@@ -13,7 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { TambahSasaranModal } from "./components/TambahSasaranModal"
+import { TambahSasaranDialog } from "./components/TambahSasaranModal"
 import {
   Dialog,
   DialogContent,
@@ -35,6 +35,12 @@ export default function PenetapanKonteksPage() {
   const [isAnggotaModalOpen, setIsAnggotaModalOpen] = React.useState(false)
   const [isStakeholderModalOpen, setIsStakeholderModalOpen] = React.useState(false)
   const [isRegulasiModalOpen, setIsRegulasiModalOpen] = React.useState(false)
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-20">
       {/* Header */}
@@ -385,10 +391,14 @@ export default function PenetapanKonteksPage() {
           Kunci & Finalisasi
         </Button>
       </div>
-      <TambahSasaranModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <TambahAnggotaModal isOpen={isAnggotaModalOpen} onClose={() => setIsAnggotaModalOpen(false)} />
-      <TambahStakeholderModal isOpen={isStakeholderModalOpen} onClose={() => setIsStakeholderModalOpen(false)} />
-      <TambahRegulasiModal isOpen={isRegulasiModalOpen} onClose={() => setIsRegulasiModalOpen(false)} />
+      {mounted && (
+        <>
+          <TambahSasaranDialog isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+          <TambahAnggotaModal isOpen={isAnggotaModalOpen} onClose={() => setIsAnggotaModalOpen(false)} />
+          <TambahStakeholderModal isOpen={isStakeholderModalOpen} onClose={() => setIsStakeholderModalOpen(false)} />
+          <TambahRegulasiModal isOpen={isRegulasiModalOpen} onClose={() => setIsRegulasiModalOpen(false)} />
+        </>
+      )}
     </div>
   )
 }
