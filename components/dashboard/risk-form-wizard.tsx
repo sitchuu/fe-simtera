@@ -371,7 +371,25 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
           </DialogTitle>
         </DialogHeader>
 
-        <div className="px-6 max-h-[70vh] overflow-y-auto">
+        <div 
+          className="px-6 max-h-[70vh] overflow-y-auto overscroll-contain"
+          onWheel={(e) => {
+            const el = e.currentTarget
+            const { scrollTop, scrollHeight, clientHeight } = el
+            const isScrollable = scrollHeight > clientHeight
+            
+            if (isScrollable) {
+              const isAtTop = scrollTop === 0
+              const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) < 1
+              const isScrollingUp = e.deltaY < 0
+              const isScrollingDown = e.deltaY > 0
+              
+              if (!(isAtTop && isScrollingUp) && !(isAtBottom && isScrollingDown)) {
+                e.stopPropagation()
+              }
+            }
+          }}
+        >
           {step === 1 && renderStep1()}
           {step === 2 && renderStep2()}
           {step === 3 && renderStep3()}

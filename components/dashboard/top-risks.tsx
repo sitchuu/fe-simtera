@@ -1,10 +1,15 @@
 "use client"
 
-import { useState } from "react"
 import { cn } from "@/lib/utils"
-import { useScrollTrap } from "@/hooks/use-scroll-trap"
 
-const risks = [
+// Exported type for reuse
+export interface TopRisk {
+  no: number
+  statement: string
+  level: string
+}
+
+const DEFAULT_RISKS: TopRisk[] = [
     { no: 1, statement: "Kebakaran Server Utama", level: "Sangat Tinggi" },
     { no: 2, statement: "Serangan Ransomware", level: "Sangat Tinggi" },
     { no: 3, statement: "Keterlambatan Laporan Keuangan", level: "Tinggi" },
@@ -25,23 +30,37 @@ const levelColors: Record<string, string> = {
     "Sangat Rendah": "bg-blue-100 text-blue-600",
 }
 
-export function TopRisks() {
-    const [isHovered, setIsHovered] = useState(false)
-    const listRef = useScrollTrap(isHovered)
+interface TopRisksProps {
+  data?: TopRisk[]
+  title?: string
+}
 
+export function TopRisks({ data = DEFAULT_RISKS, title = "Top 10 Risiko" }: TopRisksProps) {
     return (
-        <div 
-            className="w-full h-full bg-white rounded-xl shadow-sm border border-zinc-100 flex flex-col"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-        >
+        <div className="w-full h-full bg-white rounded-xl shadow-sm border border-zinc-100 flex flex-col">
             <div className="p-4 border-b border-zinc-100 shrink-0">
-                <h3 className="text-lg font-bold text-zinc-900">Top 10 Risiko</h3>
+                <h3 className="text-lg font-bold text-zinc-900">{title}</h3>
             </div>
 
             <div 
-                ref={listRef}
-                className="flex-1 overflow-y-auto min-h-[300px] max-h-[380px]"
+                className="flex-1 overflow-y-auto max-h-[380px] overscroll-contain"
+                onWheel={(e) => {
+                    const el = e.currentTarget
+                    const { scrollTop, scrollHeight, clientHeight } = el
+                    const isScrollable = scrollHeight > clientHeight
+                    
+                    if (isScrollable) {
+                        const isAtTop = scrollTop === 0
+                        const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) < 1
+                        const isScrollingUp = e.deltaY < 0
+                        const isScrollingDown = e.deltaY > 0
+                        
+                        // Only stop propagation if we can scroll in that direction
+                        if (!(isAtTop && isScrollingUp) && !(isAtBottom && isScrollingDown)) {
+                            e.stopPropagation()
+                        }
+                    }
+                }}
             >
                 <table className="w-full text-sm text-left">
                     <thead className="text-zinc-500 font-medium border-b border-zinc-100 sticky top-0 bg-white z-10">
@@ -52,7 +71,7 @@ export function TopRisks() {
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-zinc-50">
-                        {risks.map((risk, index) => (
+                        {data.map((risk, index) => (
                             <tr key={index} className="hover:bg-zinc-50/50 transition-colors">
                                 <td className="px-4 py-3 text-center font-medium text-zinc-600">{risk.no}.</td>
                                 <td className="px-4 py-3 text-zinc-700">{risk.statement}</td>

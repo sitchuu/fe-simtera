@@ -95,7 +95,7 @@ export default function PemantauanPage() {
                                     placeholder="Masukkan Keterangan Kendala..."
                                     value={comments}
                                     onChange={(e) => setComments(e.target.value)}
-                                    className="min-h-[120px] resize-none border-blue-200 focus:border-blue-500 focus:ring-blue-500/20 rounded-xl"
+                                    className="min-h-[120px] resize-none border-blue-200 focus:border-blue-500 focus:ring-blue-500/20 rounded-md"
                                 />
                             </div>
                         </div>

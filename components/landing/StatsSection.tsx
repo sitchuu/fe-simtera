@@ -75,11 +75,11 @@ export default function StatsSection() {
           </div>
           <div className="p-8 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10">
             <div ref={num2Ref} className="text-5xl font-bold mb-2 text-blue-100">0</div>
-            <div className="text-lg font-medium text-blue-100">Rencana Penanganan Berjalan</div>
+            <div className="text-lg font-medium text-blue-100">Risiko Dimitigasi</div>
           </div>
           <div className="p-8 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/10">
             <div ref={num3Ref} className="text-5xl font-bold mb-2 text-blue-100">0%</div>
-            <div className="text-lg font-medium text-blue-100">Unit Kerja Berpartisipasi</div>
+            <div className="text-lg font-medium text-blue-100">Efektivitas Pengendalian</div>
           </div>
         </div>
       </div>

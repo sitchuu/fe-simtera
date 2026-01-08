@@ -10,7 +10,9 @@ export const DEFAULT_UNITS = [
   "KTL", "ELE", "OTO", "LAF", "TET", "PUM", "RBI", "SPI", "UPG"
 ]
 export const DEFAULT_TRIWULAN = ["Triwulan 1", "Triwulan 2", "Triwulan 3", "Triwulan 4"]
-export const DEFAULT_YEARS = Array.from({ length: 6 }, (_, i) => (new Date().getFullYear() - i).toString())
+// Static year constant for SSR consistency - prevents hydration mismatch
+const CURRENT_YEAR = 2026
+export const DEFAULT_YEARS = Array.from({ length: 6 }, (_, i) => (CURRENT_YEAR - i).toString())
 
 interface DashboardFiltersProps {
   selectedUnit: string

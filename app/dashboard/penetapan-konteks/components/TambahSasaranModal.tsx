@@ -55,7 +55,7 @@ export function TambahSasaranDialog({ isOpen, onClose }: TambahSasaranDialogProp
                                 1. Kode Risiko
                             </Label>
                             <Select>
-                                <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-xl text-base text-gray-500">
+                                <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-md text-base text-gray-500">
                                     <SelectValue placeholder="Pilih Kode" />
                                 </SelectTrigger>
                                 <SelectContent className="z-[99999]">
@@ -75,7 +75,7 @@ export function TambahSasaranDialog({ isOpen, onClose }: TambahSasaranDialogProp
                                 Unit
                             </Label>
                             <Select>
-                                <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-xl text-base text-gray-500">
+                                <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-md text-base text-gray-500">
                                     <SelectValue placeholder="Pilih Unit" />
                                 </SelectTrigger>
                                 <SelectContent className="z-[99999]">
@@ -93,7 +93,7 @@ export function TambahSasaranDialog({ isOpen, onClose }: TambahSasaranDialogProp
                                 Objek Risiko
                             </Label>
                             <Select>
-                                <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-xl text-base text-gray-500">
+                                <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-md text-base text-gray-500">
                                     <SelectValue placeholder="Pilih Objek" />
                                 </SelectTrigger>
                                 <SelectContent className="z-[99999]">
@@ -117,13 +117,13 @@ export function TambahSasaranDialog({ isOpen, onClose }: TambahSasaranDialogProp
                         <Textarea
                             id="uraian-sasaran"
                             placeholder="Masukkan Kode..."
-                            className="min-h-[120px] resize-none border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl placeholder:text-gray-300"
+                            className="min-h-[120px] resize-none border-blue-300 focus-visible:ring-blue-500 text-base rounded-md placeholder:text-gray-300"
                         />
                     </div>
                 </div>
 
                 <div className="px-8 py-6 flex justify-end">
-                    <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-8 py-6 text-base font-medium shadow-lg shadow-blue-500/20">
+                    <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-8 py-6 text-base font-medium">
                         <Save className="mr-2 h-5 w-5" />
                         Simpan
                     </Button>

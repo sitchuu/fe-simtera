@@ -67,7 +67,7 @@ export default function FormRTPPage() {
                 </h2>
                 <div className="w-full md:w-1/3">
                     <Select>
-                        <SelectTrigger className="h-12 border-blue-300 rounded-xl text-gray-500">
+                        <SelectTrigger className="h-12 border-blue-300 rounded-md text-gray-500">
                             <SelectValue placeholder="Pilih Strategi" />
                         </SelectTrigger>
                         <SelectContent>
@@ -85,7 +85,7 @@ export default function FormRTPPage() {
                 <h2 className="text-lg font-bold text-gray-700">
                     2. Rencana Aksi
                 </h2>
-                <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
+                <div className="bg-white rounded-md border border-gray-100 overflow-hidden">
                     <Table>
                         <TableHeader className="bg-gray-50/50">
                             <TableRow>
@@ -138,7 +138,7 @@ export default function FormRTPPage() {
                     <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
                         <Label className="text-base font-bold text-gray-700">Kemungkinan:</Label>
                         <Select>
-                            <SelectTrigger className="h-12 border-blue-300 rounded-xl text-gray-400">
+                            <SelectTrigger className="h-12 border-blue-300 rounded-md text-gray-400">
                                 <SelectValue placeholder="Tentukan Kemungkinan" />
                             </SelectTrigger>
                             <SelectContent>
@@ -153,7 +153,7 @@ export default function FormRTPPage() {
                     <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
                         <Label className="text-base font-bold text-gray-700">Dampak:</Label>
                         <Select>
-                            <SelectTrigger className="h-12 border-blue-300 rounded-xl text-gray-400">
+                            <SelectTrigger className="h-12 border-blue-300 rounded-md text-gray-400">
                                 <SelectValue placeholder="Tentukan Dampak" />
                             </SelectTrigger>
                             <SelectContent>
@@ -169,7 +169,7 @@ export default function FormRTPPage() {
                         <Label className="text-base font-bold text-gray-700">Hasil:</Label>
                         <Input
                             placeholder="Hasil"
-                            className="h-12 border-blue-300 rounded-xl text-gray-400"
+                            className="h-12 border-blue-300 rounded-md text-gray-400"
                             readOnly
                         />
                     </div>
@@ -215,7 +215,7 @@ function TambahKegiatanModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                         <Input
                             id="keadaan"
                             placeholder="Masukkan Keadaan..."
-                            className="h-11 border-blue-300 focus-visible:ring-blue-500 rounded-xl placeholder:text-gray-300"
+                            className="h-11 border-blue-300 focus-visible:ring-blue-500 rounded-md placeholder:text-gray-300"
                         />
                     </div>
 
@@ -227,7 +227,7 @@ function TambahKegiatanModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                         <Input
                             id="target"
                             placeholder="Masukkan Kode..." // Placeholder matches image, though label says Target Output
-                            className="h-11 border-blue-300 focus-visible:ring-blue-500 rounded-xl placeholder:text-gray-300"
+                            className="h-11 border-blue-300 focus-visible:ring-blue-500 rounded-md placeholder:text-gray-300"
                         />
                     </div>
 
@@ -240,7 +240,7 @@ function TambahKegiatanModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                             <Input
                                 id="jadwal"
                                 placeholder="Masukkan Jadwal..."
-                                className="h-11 border-blue-300 focus-visible:ring-blue-500 rounded-xl placeholder:text-gray-300 pr-10"
+                                className="h-11 border-blue-300 focus-visible:ring-blue-500 rounded-md placeholder:text-gray-300 pr-10"
                             />
                             <Calendar className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
                         </div>

@@ -4,7 +4,6 @@ import * as React from "react"
 import { Check, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { useScrollTrap } from "@/hooks/use-scroll-trap"
 
 interface FilterDropdownProps {
   label: string
@@ -23,10 +22,6 @@ export function FilterDropdown({
 }: FilterDropdownProps) {
   const [isOpen, setIsOpen] = React.useState(false)
   const dropdownRef = React.useRef<HTMLDivElement>(null)
-  
-  // Use the scroll trap hook
-  // It returns a ref that we must attach to the SCROLLABLE container
-  const listRef = useScrollTrap(isOpen)
 
   // Close on click outside
   React.useEffect(() => {
@@ -38,6 +33,23 @@ export function FilterDropdown({
     document.addEventListener("mousedown", handleClickOutside)
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
+
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    const el = e.currentTarget
+    const { scrollTop, scrollHeight, clientHeight } = el
+    const isScrollable = scrollHeight > clientHeight
+    
+    if (isScrollable) {
+      const isAtTop = scrollTop === 0
+      const isAtBottom = Math.abs(scrollHeight - clientHeight - scrollTop) < 1
+      const isScrollingUp = e.deltaY < 0
+      const isScrollingDown = e.deltaY > 0
+      
+      if (!(isAtTop && isScrollingUp) && !(isAtBottom && isScrollingDown)) {
+        e.stopPropagation()
+      }
+    }
+  }
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -52,8 +64,8 @@ export function FilterDropdown({
 
       {isOpen && (
         <div 
-          ref={listRef}
-          className="absolute top-full left-0 mt-1 w-full min-w-[160px] max-h-[300px] overflow-y-auto rounded-md border border-zinc-200 bg-white p-1 shadow-lg z-50 animate-in fade-in-0 zoom-in-95 duration-100"
+          className="absolute top-full left-0 mt-1 w-full min-w-[160px] max-h-[300px] overflow-y-auto overscroll-contain rounded-md border border-zinc-200 bg-white p-1 shadow-lg z-50 animate-in fade-in-0 zoom-in-95 duration-100"
+          onWheel={handleWheel}
         >
           {options.map((option) => (
             <button

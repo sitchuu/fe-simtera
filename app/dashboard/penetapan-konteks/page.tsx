@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Plus, Info, Pencil, Save, Lock } from "lucide-react"
+import { Plus, Trash2, Pencil, Save, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -154,8 +154,8 @@ export default function PenetapanKonteksPage() {
                         <button className="text-blue-500 hover:text-blue-700 transition-colors p-1 rounded-md hover:bg-blue-50">
                           <Pencil className="h-5 w-5" />
                         </button>
-                        <button className="text-orange-500 hover:text-orange-700 transition-colors p-1 rounded-md hover:bg-orange-50">
-                          <Info className="h-5 w-5" />
+                        <button className="text-red-500 hover:text-red-700 transition-colors p-1 rounded-md hover:bg-red-50">
+                          <Trash2 className="h-5 w-5" />
                         </button>
                       </div>
                     </TableCell>
@@ -188,7 +188,7 @@ export default function PenetapanKonteksPage() {
                     Jabatan:
                   </Label>
                   <Select>
-                    <SelectTrigger className="h-12 border-blue-300 rounded-xl text-gray-500">
+                    <SelectTrigger className="h-12 border-blue-300 rounded-md text-gray-500">
                       <SelectValue placeholder="Jabatan" />
                     </SelectTrigger>
                     <SelectContent>
@@ -202,14 +202,14 @@ export default function PenetapanKonteksPage() {
                     <Label className="text-xs font-bold text-gray-700">NIP:</Label>
                     <Input
                       placeholder="Masukkan NIP..."
-                      className="h-12 border-blue-300 rounded-xl"
+                      className="h-12 border-blue-300 rounded-md"
                     />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-xs font-bold text-gray-700">Nama:</Label>
                     <Input
                       placeholder="Nama Pemilik Risiko..."
-                      className="h-12 border-blue-300 rounded-xl"
+                      className="h-12 border-blue-300 rounded-md"
                     />
                   </div>
                 </div>
@@ -227,7 +227,7 @@ export default function PenetapanKonteksPage() {
                     Jabatan:
                   </Label>
                   <Select>
-                    <SelectTrigger className="h-12 border-blue-300 rounded-xl text-gray-500">
+                    <SelectTrigger className="h-12 border-blue-300 rounded-md text-gray-500">
                       <SelectValue placeholder="Jabatan" />
                     </SelectTrigger>
                     <SelectContent>
@@ -241,14 +241,14 @@ export default function PenetapanKonteksPage() {
                     <Label className="text-xs font-bold text-gray-700">NIP:</Label>
                     <Input
                       placeholder="Masukkan NIP..."
-                      className="h-12 border-blue-300 rounded-xl"
+                      className="h-12 border-blue-300 rounded-md"
                     />
                   </div>
                   <div className="space-y-2">
                     <Label className="text-xs font-bold text-gray-700">Nama:</Label>
                     <Input
                       placeholder="Nama Pemilik Risiko..."
-                      className="h-12 border-blue-300 rounded-xl"
+                      className="h-12 border-blue-300 rounded-md"
                     />
                   </div>
                 </div>
@@ -314,8 +314,8 @@ export default function PenetapanKonteksPage() {
                         <button className="text-blue-500 hover:text-blue-700 transition-colors p-1 rounded-md hover:bg-blue-50">
                           <Pencil className="h-5 w-5" />
                         </button>
-                        <button className="text-orange-500 hover:text-orange-700 transition-colors p-1 rounded-md hover:bg-orange-50">
-                          <Info className="h-5 w-5" />
+                        <button className="text-red-500 hover:text-red-700 transition-colors p-1 rounded-md hover:bg-red-50">
+                          <Trash2 className="h-5 w-5" />
                         </button>
                       </div>
                     </TableCell>
@@ -367,8 +367,8 @@ export default function PenetapanKonteksPage() {
                         <button className="text-blue-500 hover:text-blue-700 transition-colors p-1 rounded-md hover:bg-blue-50">
                           <Pencil className="h-5 w-5" />
                         </button>
-                        <button className="text-orange-500 hover:text-orange-700 transition-colors p-1 rounded-md hover:bg-orange-50">
-                          <Info className="h-5 w-5" />
+                        <button className="text-red-500 hover:text-red-700 transition-colors p-1 rounded-md hover:bg-red-50">
+                          <Trash2 className="h-5 w-5" />
                         </button>
                       </div>
                     </TableCell>
@@ -420,7 +420,7 @@ function TambahAnggotaModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
               1. Jabatan
             </Label>
             <Select>
-              <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-xl text-base text-gray-500">
+              <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-md text-base text-gray-500">
                 <SelectValue placeholder="Jabatan" />
               </SelectTrigger>
               <SelectContent>
@@ -438,7 +438,7 @@ function TambahAnggotaModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
             <Input
               id="nip"
               placeholder="Masukkan NIP..."
-              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl placeholder:text-gray-300"
+              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-md placeholder:text-gray-300"
             />
           </div>
 
@@ -450,7 +450,7 @@ function TambahAnggotaModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
             <Input
               id="nama"
               placeholder="Nama Anggota..."
-              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl placeholder:text-gray-300"
+              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-md placeholder:text-gray-300"
             />
           </div>
         </div>
@@ -485,7 +485,7 @@ function TambahStakeholderModal({ isOpen, onClose }: { isOpen: boolean; onClose:
             <Input
               id="nama-stakeholder"
               placeholder="Masukan Nama..."
-              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl placeholder:text-gray-300"
+              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-md placeholder:text-gray-300"
             />
           </div>
 
@@ -496,7 +496,7 @@ function TambahStakeholderModal({ isOpen, onClose }: { isOpen: boolean; onClose:
             </Label>
             <Textarea
               id="hubungan"
-              className="min-h-[60px] resize-none border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl"
+              className="min-h-[60px] resize-none border-blue-300 focus-visible:ring-blue-500 text-base rounded-md"
             />
           </div>
         </div>
@@ -531,7 +531,7 @@ function TambahRegulasiModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
             <Input
               id="nama-peraturan"
               placeholder="Masukan Nama..."
-              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl placeholder:text-gray-300"
+              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-md placeholder:text-gray-300"
             />
           </div>
 
@@ -543,7 +543,7 @@ function TambahRegulasiModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
             <Input
               id="tentang"
               placeholder="Masukan Isi..."
-              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-xl placeholder:text-gray-300"
+              className="h-12 border-blue-300 focus-visible:ring-blue-500 text-base rounded-md placeholder:text-gray-300"
             />
           </div>
         </div>

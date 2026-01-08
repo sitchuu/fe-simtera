@@ -62,8 +62,7 @@ export default function HeroSection() {
             ref={subtitleRef}
             className="text-md md:text-md text-zinc-200 mb-16 leading-relaxed max-w-2xl drop-shadow-md"
           >
-            Implementasi Digital SK Kepala Balai Nomor /D7.5/KP Tahun 2024
-            tentang Petunjuk Pelaksanaan Manajemen Risiko.
+            Mengawal pencapaian sasaran strategis BBPPMPV BMTI melalui pengelolaan risiko yang efektif, sistematis, dan terukur.
           </p>
           <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4">
             <Link href="/login" className="w-full sm:w-auto">
