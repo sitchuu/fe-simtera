@@ -18,7 +18,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Plus, Pencil, Info } from "lucide-react"
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { Plus, Trash2, Pencil, FileText } from "lucide-react"
 
 interface RiskFormWizardProps {
   open: boolean
@@ -30,6 +43,14 @@ const SASARAN_OPTIONS = ["Sasaran Kinerja 1", "Sasaran Kinerja 2", "Sasaran Kine
 const KEMUNGKINAN_OPTIONS = ["1 - Hampir Tidak Terjadi", "2 - Jarang Terjadi", "3 - Kadang Terjadi", "4 - Sering Terjadi", "5 - Hampir Pasti Terjadi"]
 const DAMPAK_OPTIONS = ["1 - Tidak Signifikan", "2 - Minor", "3 - Moderat", "4 - Signifikan", "5 - Sangat Signifikan"]
 const EFEKTIVITAS_OPTIONS = ["Sudah Efektif", "Kurang Efektif", "Tidak Efektif"]
+
+const MASTER_PENYEBAB = [
+  "Listrik tidak stabil (Master)",
+  "Lisensi software habis (Master)",
+  "Server Down karena Overheat",
+  "Koneksi Internet Putus",
+  "SDM Kurang Kompeten",
+]
 
 export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
   const [step, setStep] = useState(1)
@@ -46,11 +67,22 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
   const [dampakRisiko, setDampakRisiko] = useState("")
 
   // Step 3
-  const [causes] = useState<{ id: number; text: string }[]>([
+  const [causes, setCauses] = useState<{ id: number; text: string }[]>([
     { id: 1, text: "Lorem ipsum Dolor sit amet" },
     { id: 2, text: "Lorem ipsum Dolor sit amet" },
   ])
+  const [openCombobox, setOpenCombobox] = useState(false)
+  const [searchValue, setSearchValue] = useState("")
 
+  const addCause = (text: string) => {
+    setCauses([...causes, { id: Date.now(), text }])
+    setOpenCombobox(false)
+    setSearchValue("")
+  }
+
+  const removeCause = (id: number) => {
+    setCauses(causes.filter(c => c.id !== id))
+  }
   // Step 4
   const [kemungkinan, setKemungkinan] = useState("")
   const [dampak, setDampak] = useState("")
@@ -78,7 +110,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
 
   const renderStep1 = () => (
     <div className="space-y-8 py-4">
-      <div className="space-y-6">
+      <div className="flex flex-col gap-4">
         <label className="text-base font-semibold text-gray-700">1. Sasaran Kinerja</label>
         <Select value={sasaran} onValueChange={setSasaran}>
           <SelectTrigger className="w-full h-10 border-gray-300 focus:ring-blue-500">
@@ -91,7 +123,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
           </SelectContent>
         </Select>
       </div>
-      <div className="space-y-6">
+      <div className="flex flex-col gap-4">
         <label className="text-base font-semibold text-gray-700">2. Uraian Kegiatan</label>
         <FormTextarea
           placeholder="Masukkan Uraian..."
@@ -106,9 +138,9 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
   const renderStep2 = () => (
     <div className="space-y-6 py-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
           <label className="text-base font-semibold text-gray-700">1. Sumber Risiko</label>
-          <div className="space-y-2">
+          <div className="flex flex-row gap-6">
             <label className="flex items-center space-x-2 cursor-pointer">
               <input
                 type="radio"
@@ -131,7 +163,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
             </label>
           </div>
         </div>
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
           <label className="text-base font-semibold text-gray-700">2. Pemilik Risiko</label>
           <Input
             placeholder="Masukan Uraian..."
@@ -142,7 +174,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="flex flex-col gap-4">
         <label className="text-base font-semibold text-gray-700">3. Uraian Risiko</label>
         <FormTextarea
           placeholder="Masukkan Uraian..."
@@ -151,7 +183,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
         />
       </div>
 
-      <div className="space-y-4">
+      <div className="flex flex-col gap-4">
         <label className="text-base font-semibold text-gray-700">4. Dampak Risiko</label>
         <FormTextarea
           placeholder="Masukkan Uraian..."
@@ -183,8 +215,11 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
                     <button className="text-blue-500 hover:text-blue-700 p-1">
                       <Pencil className="h-4 w-4" />
                     </button>
-                    <button className="text-red-500 hover:text-red-700 p-1">
-                      <Info className="h-4 w-4 rotate-180" />
+                    <button 
+                      className="text-red-500 hover:text-red-700 p-1"
+                      onClick={() => removeCause(cause.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
                     </button>
                   </div>
                 </td>
@@ -193,18 +228,63 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
           </tbody>
         </table>
       </div>
-
-      <Button className="bg-blue-500 hover:bg-blue-600 text-white">
-        <Plus className="mr-2 h-4 w-4" />
-        Tambah Penyebab Lain
-      </Button>
+      <Popover open={openCombobox} onOpenChange={setOpenCombobox} modal={true}>
+        <PopoverTrigger asChild>
+          <Button 
+            role="combobox"
+            aria-expanded={openCombobox}
+            className="bg-blue-500 hover:bg-blue-600 text-white w-fit"
+          >
+            <Plus className="mr-2 h-4 w-4" />
+            Tambah Penyebab Lain
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-[400px] p-0" align="start">
+          <Command>
+            <CommandInput 
+              placeholder="Cari penyebab..." 
+              value={searchValue}
+              onValueChange={setSearchValue}
+            />
+            <CommandList>
+              <CommandEmpty>
+                <div className="p-2">
+                  <p className="text-sm text-muted-foreground mb-2">Tidak ditemukan.</p>
+                  <Button 
+                    variant="secondary" 
+                    className="w-full justify-start h-auto py-2 px-3"
+                    onClick={() => addCause(searchValue)}
+                  >
+                    <Plus className="mr-2 h-4 w-4" />
+                    Gunakan &ldquo;{searchValue}&rdquo; sebagai data baru
+                  </Button>
+                </div>
+              </CommandEmpty>
+              <CommandGroup heading="Master Penyebab">
+                {MASTER_PENYEBAB.map((cause) => (
+                  <CommandItem
+                    key={cause}
+                    value={cause}
+                    onSelect={() => {
+                      addCause(cause)
+                    }}
+                  >
+                    <FileText className="mr-2 h-4 w-4" />
+                    {cause}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </PopoverContent>
+      </Popover>
     </div>
   )
 
   const renderStep4 = () => (
     <div className="space-y-6 py-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
           <label className="text-base font-semibold text-gray-700">1. Kemungkinan</label>
           <Select value={kemungkinan} onValueChange={setKemungkinan}>
             <SelectTrigger className="w-full h-10 border-gray-300 focus:ring-blue-500">
@@ -217,7 +297,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
             </SelectContent>
           </Select>
         </div>
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
           <label className="text-base font-semibold text-gray-700">2. Dampak</label>
           <Select value={dampak} onValueChange={setDampak}>
             <SelectTrigger className="w-full h-10 border-gray-300 focus:ring-blue-500">
@@ -232,7 +312,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="flex flex-col gap-4">
         <label className="text-base font-semibold text-gray-700">3. Hasil</label>
         <Input
           placeholder="Hasil..."
@@ -246,7 +326,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
 
   const renderStep5 = () => (
     <div className="space-y-6 py-4">
-      <div className="space-y-4">
+      <div className="flex flex-col gap-4">
         <label className="text-base font-semibold text-gray-700">1. Apa kontrol yang sudah ada?</label>
         <FormTextarea
           placeholder="Masukkan Uraian..."
@@ -255,7 +335,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
           onChange={(e) => setKontrol(e.target.value)}
         />
       </div>
-      <div className="space-y-4">
+      <div className="flex flex-col gap-4">
         <label className="text-base font-semibold text-gray-700">2. Penilaian Efektivitas</label>
         <Select value={efektivitas} onValueChange={setEfektivitas}>
           <SelectTrigger className="w-full h-10 border-gray-300 focus:ring-blue-500">
