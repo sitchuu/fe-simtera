@@ -43,7 +43,7 @@ export function TopRisks({ data = DEFAULT_RISKS, title = "Top 10 Risiko" }: TopR
             </div>
 
             <div 
-                className="flex-1 overflow-y-auto max-h-[380px] overscroll-contain"
+                className="flex-1 overflow-y-auto max-h-95 overscroll-contain"
                 onWheel={(e) => {
                     const el = e.currentTarget
                     const { scrollTop, scrollHeight, clientHeight } = el
@@ -77,7 +77,7 @@ export function TopRisks({ data = DEFAULT_RISKS, title = "Top 10 Risiko" }: TopR
                                 <td className="px-4 py-3 text-zinc-700">{risk.statement}</td>
                                 <td className="px-4 py-3 text-right">
                                     <span className={cn(
-                                        "inline-flex items-center justify-center px-4 py-1 rounded-full text-xs font-semibold whitespace-nowrap min-w-[100px]",
+                                        "inline-flex items-center justify-center px-4 py-1 rounded-full text-xs font-semibold whitespace-nowrap min-w-25",
                                         levelColors[risk.level]
                                     )}>
                                         {risk.level}
