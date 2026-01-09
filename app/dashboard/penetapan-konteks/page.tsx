@@ -1,8 +1,9 @@
 "use client"
 
 import React from "react"
-import { Plus, Trash2, Pencil, Save, Lock } from "lucide-react"
+import { Trash2, Pencil, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { SaveButton, AddButton } from "@/components/ui/action-buttons"
 import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
@@ -122,13 +123,10 @@ export default function PenetapanKonteksPage() {
                 *Tips: Mengacu pada dokumen Renstra / Perjanjian Kinerja Unit.
               </p>
             </div>
-            <Button
-              className="bg-blue-500 hover:bg-blue-600 text-white shadow-md"
+            <AddButton
               onClick={() => setIsModalOpen(true)}
-            >
-              <Plus className="mr-2 h-4 w-4" />
-              Tambah Sasaran
-            </Button>
+              label="Tambah Sasaran"
+            />
           </div>
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -261,13 +259,11 @@ export default function PenetapanKonteksPage() {
                 3. Anggota Tim (Opsional)
               </h4>
               <div>
-                <Button
-                  className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-md h-10 px-4 text-xs font-medium"
+                <AddButton
+                  className="rounded-lg h-10 px-4 text-xs font-medium"
                   onClick={() => setIsAnggotaModalOpen(true)}
-                >
-                  <Plus className="mr-2 h-4 w-4" />
-                  Tambah Anggota
-                </Button>
+                  label="Tambah Anggota"
+                />
               </div>
             </div>
           </div>
@@ -282,13 +278,10 @@ export default function PenetapanKonteksPage() {
                 Mengidentifikasi pihak yang berinteraksi.
               </p>
             </div>
-            <Button
-              className="bg-blue-500 hover:bg-blue-600 text-white shadow-md"
+            <AddButton
               onClick={() => setIsStakeholderModalOpen(true)}
-            >
-              <Plus className="mr-2 h-4 w-4" />
-              Tambah Stakeholder
-            </Button>
+              label="Tambah Stakeholder"
+            />
           </div>
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -335,13 +328,10 @@ export default function PenetapanKonteksPage() {
                 Mengidentifikasi dasar hukum kerja.
               </p>
             </div>
-            <Button
-              className="bg-blue-500 hover:bg-blue-600 text-white shadow-md"
+            <AddButton
               onClick={() => setIsRegulasiModalOpen(true)}
-            >
-              <Plus className="mr-2 h-4 w-4" />
-              Tambah Regulasi
-            </Button>
+              label="Tambah Regulasi"
+            />
           </div>
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -382,10 +372,7 @@ export default function PenetapanKonteksPage() {
 
       {/* Footer Actions */}
       <div className="flex justify-end gap-4 pt-8 border-t border-gray-200">
-        <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6">
-          <Save className="mr-2 h-4 w-4" />
-          Simpan Draft
-        </Button>
+        <SaveButton label="Simpan Draft" className="px-6" />
         <Button variant="outline" className="border-blue-500 text-blue-500 hover:bg-blue-50 px-6">
           <Lock className="mr-2 h-4 w-4" />
           Kunci & Finalisasi
@@ -406,7 +393,7 @@ export default function PenetapanKonteksPage() {
 function TambahAnggotaModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden gap-0 rounded-2xl">
+      <DialogContent className="sm:max-w-150 p-0 overflow-hidden gap-0 rounded-2xl">
         <DialogHeader className="px-8 pt-8 pb-4 flex flex-row items-center justify-between">
           <DialogTitle className="text-2xl font-bold text-gray-700">
             Tambah Anggota Tim
@@ -456,10 +443,7 @@ function TambahAnggotaModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
         </div>
 
         <div className="px-8 py-6 flex justify-end">
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-8 py-6 text-base font-medium shadow-lg shadow-blue-500/20">
-            <Save className="mr-2 h-5 w-5" />
-            Simpan
-          </Button>
+          <SaveButton className="rounded-lg px-8 py-6 text-base font-medium" />
         </div>
       </DialogContent>
     </Dialog>
@@ -469,7 +453,7 @@ function TambahAnggotaModal({ isOpen, onClose }: { isOpen: boolean; onClose: () 
 function TambahStakeholderModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden gap-0 rounded-2xl">
+      <DialogContent className="sm:max-w-150 p-0 overflow-hidden gap-0 rounded-2xl">
         <DialogHeader className="px-8 pt-8 pb-4 flex flex-row items-center justify-between">
           <DialogTitle className="text-2xl font-bold text-gray-700">
             Tambah Stakeholder
@@ -496,16 +480,13 @@ function TambahStakeholderModal({ isOpen, onClose }: { isOpen: boolean; onClose:
             </Label>
             <Textarea
               id="hubungan"
-              className="min-h-[60px] resize-none border-blue-300 focus-visible:ring-blue-500 text-base rounded-md"
+              className="min-h-15 resize-none border-blue-300 focus-visible:ring-blue-500 text-base rounded-md"
             />
           </div>
         </div>
 
         <div className="px-8 py-6 flex justify-end">
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-8 py-6 text-base font-medium shadow-lg shadow-blue-500/20">
-            <Save className="mr-2 h-5 w-5" />
-            Simpan
-          </Button>
+          <SaveButton className="rounded-lg px-8 py-6 text-base font-medium" />
         </div>
       </DialogContent>
     </Dialog>
@@ -515,7 +496,7 @@ function TambahStakeholderModal({ isOpen, onClose }: { isOpen: boolean; onClose:
 function TambahRegulasiModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden gap-0 rounded-2xl">
+      <DialogContent className="sm:max-w-150 p-0 overflow-hidden gap-0 rounded-2xl">
         <DialogHeader className="px-8 pt-8 pb-4 flex flex-row items-center justify-between">
           <DialogTitle className="text-2xl font-bold text-gray-700">
             Tambah Regulasi
@@ -549,10 +530,7 @@ function TambahRegulasiModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
         </div>
 
         <div className="px-8 py-6 flex justify-end">
-          <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-8 py-6 text-base font-medium shadow-lg shadow-blue-500/20">
-            <Save className="mr-2 h-5 w-5" />
-            Simpan
-          </Button>
+          <SaveButton className="rounded-lg px-8 py-6 text-base font-medium" />
         </div>
       </DialogContent>
     </Dialog>

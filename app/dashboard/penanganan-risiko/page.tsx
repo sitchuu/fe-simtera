@@ -1,9 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import React from "react"
+import React, { useState } from "react"
 import { Plus, Edit3, Eye } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import {
     Table,
     TableBody,
@@ -12,14 +11,19 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import { DashboardFilters } from "@/components/dashboard/dashboard-filters"
 
 export default function PenangananRisikoPage() {
+    const [selectedUnit, setSelectedUnit] = useState("Semua Unit")
+    const [selectedTriwulan, setSelectedTriwulan] = useState("Triwulan 4")
+    const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString())
+
     return (
         <div className="space-y-8 max-w-7xl mx-auto pb-20">
             {/* Header */}
             <div>
-                <h1 className="text-3xl font-bold text-gray-800 uppercase">
-                    PENANGANAN RISIKO (Risk Treatment)
+                <h1 className="text-3xl font-bold text-gray-800">
+                    Penanganan Risiko (Risk Treatment)
                 </h1>
                 <p className="text-gray-500 mt-2 text-base">
                     Halaman ini berisi daftar risiko yang &quot;Wajib Diobati&quot; (Level Tinggi/Merah atau Kontrol Tidak Efektif).
@@ -28,17 +32,19 @@ export default function PenangananRisikoPage() {
 
             {/* Main Content */}
             <div className="space-y-6">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                <div className="flex flex-col gap-4">
                     <h2 className="text-xl font-bold text-gray-700 uppercase max-w-2xl">
                         DAFTAR RISIKO YANG MEMBUTUHKAN PENANGANAN (MITIGASI)
                     </h2>
-                    <div className="flex gap-3">
-                        <Button variant="outline" className="min-w-[100px] border-gray-300 text-gray-600">
-                            Unit
-                        </Button>
-                        <Button variant="outline" className="min-w-[100px] border-gray-300 text-gray-600">
-                            2025
-                        </Button>
+                    <div className="flex justify-end mt-6">
+                        <DashboardFilters
+                            selectedUnit={selectedUnit}
+                            setSelectedUnit={setSelectedUnit}
+                            selectedTriwulan={selectedTriwulan}
+                            setSelectedTriwulan={setSelectedTriwulan}
+                            selectedYear={selectedYear}
+                            setSelectedYear={setSelectedYear}
+                        />
                     </div>
                 </div>
 
