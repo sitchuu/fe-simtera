@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useState } from "react"
-import { Plus, Info, Pencil } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Info, Pencil } from "lucide-react"
+import { AddButton } from "@/components/ui/action-buttons"
 import {
   Table,
   TableBody,
@@ -104,13 +104,9 @@ export default function ProfilRisikoPage() {
         
         {/* Add Button Row */}
         <div className="flex justify-end pt-2">
-          <Button 
-            className="bg-blue-500 hover:bg-blue-600 text-white shadow-md"
+          <AddButton
             onClick={() => setIsWizardOpen(true)}
-          >
-            <Plus className="mr-2 h-4 w-4" />
-            Tambah
-          </Button>
+          />
         </div>
       </div>
 

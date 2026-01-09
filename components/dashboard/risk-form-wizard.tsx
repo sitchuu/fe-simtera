@@ -32,6 +32,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Plus, Trash2, Pencil, FileText } from "lucide-react"
+import { SaveButton, NextButton, BackButton } from "@/components/ui/action-buttons"
 
 interface RiskFormWizardProps {
   open: boolean
@@ -42,7 +43,7 @@ interface RiskFormWizardProps {
 const SASARAN_OPTIONS = ["Sasaran Kinerja 1", "Sasaran Kinerja 2", "Sasaran Kinerja 3"]
 const KEMUNGKINAN_OPTIONS = ["1 - Hampir Tidak Terjadi", "2 - Jarang Terjadi", "3 - Kadang Terjadi", "4 - Sering Terjadi", "5 - Hampir Pasti Terjadi"]
 const DAMPAK_OPTIONS = ["1 - Tidak Signifikan", "2 - Minor", "3 - Moderat", "4 - Signifikan", "5 - Sangat Signifikan"]
-const EFEKTIVITAS_OPTIONS = ["Sudah Efektif", "Kurang Efektif", "Tidak Efektif"]
+
 
 const MASTER_PENYEBAB = [
   "Listrik tidak stabil (Master)",
@@ -127,7 +128,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
         <label className="text-base font-semibold text-gray-700">2. Uraian Kegiatan</label>
         <FormTextarea
           placeholder="Masukkan Uraian..."
-          className="min-h-[120px]"
+          className="min-h-30"
           value={uraianKegiatan}
           onChange={(e) => setUraianKegiatan(e.target.value)}
         />
@@ -239,7 +240,7 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
             Tambah Penyebab Lain
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[400px] p-0" align="start">
+        <PopoverContent className="w-100 p-0" align="start">
           <Command>
             <CommandInput 
               placeholder="Cari penyebab..." 
@@ -330,23 +331,76 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
         <label className="text-base font-semibold text-gray-700">1. Apa kontrol yang sudah ada?</label>
         <FormTextarea
           placeholder="Masukkan Uraian..."
-          className="min-h-[120px]"
+          className="min-h-30"
           value={kontrol}
           onChange={(e) => setKontrol(e.target.value)}
         />
       </div>
       <div className="flex flex-col gap-4">
         <label className="text-base font-semibold text-gray-700">2. Penilaian Efektivitas</label>
-        <Select value={efektivitas} onValueChange={setEfektivitas}>
-          <SelectTrigger className="w-full h-10 border-gray-300 focus:ring-blue-500">
-            <SelectValue placeholder="Pilih Penilaian..." />
-          </SelectTrigger>
-          <SelectContent>
-            {EFEKTIVITAS_OPTIONS.map(opt => (
-              <SelectItem key={opt} value={opt}>{opt}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <div className="relative">
+          {/* Bullet points container */}
+          <div className="flex items-start justify-between relative">
+            {/* Background line - positioned in the middle of bullets */}
+            <div 
+              className="absolute h-0.5 bg-gray-300 z-0" 
+              style={{ 
+                top: '12px', 
+                left: '50px', 
+                right: '50px'
+              }} 
+            />
+            {/* Progress line */}
+            <div 
+              className="absolute h-0.5 bg-blue-500 z-0 transition-all duration-300"
+              style={{ 
+                top: '12px',
+                left: '50px',
+                width: efektivitas === "Belum Efektif" ? "0" : 
+                       efektivitas === "Kurang Efektif" ? "calc(50% - 50px)" : 
+                       efektivitas === "Sudah Efektif" ? "calc(100% - 100px)" : "0" 
+              }}
+            />
+          
+            {/* Bullet points */}
+            {["Belum Efektif", "Kurang Efektif", "Sudah Efektif"].map((option, index) => {
+              const options = ["Belum Efektif", "Kurang Efektif", "Sudah Efektif"]
+              const selectedIndex = options.indexOf(efektivitas)
+              const currentIndex = index
+              const isSelected = efektivitas === option
+              const isPassed = selectedIndex >= 0 && currentIndex <= selectedIndex
+              
+              return (
+                <div 
+                  key={option}
+                  className="flex flex-col items-center z-10 cursor-pointer"
+                  onClick={() => setEfektivitas(option)}
+                >
+                  <div 
+                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
+                      isPassed 
+                        ? "bg-blue-500 border-blue-500" 
+                        : "bg-white border-gray-300 hover:border-blue-400"
+                    }`}
+                  >
+                    {isSelected && (
+                      <div className="w-2 h-2 rounded-full bg-white" />
+                    )}
+                  </div>
+                  <span className={`text-xs mt-2 text-center font-medium transition-all duration-200 ${
+                    isSelected 
+                      ? "text-blue-600" 
+                      : isPassed 
+                        ? "text-blue-400 opacity-60" 
+                        : "text-gray-400 opacity-50"
+                  }`}>
+                    {option}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -399,18 +453,12 @@ export function RiskFormWizard({ open, onOpenChange }: RiskFormWizardProps) {
 
         <DialogFooter className="px-6 py-4 border-t bg-gray-50 flex justify-end gap-2">
           {step > 1 && (
-            <Button variant="outline" onClick={handleBack}>
-              Kembali
-            </Button>
+            <BackButton onClick={handleBack} />
           )}
           {step < 5 ? (
-            <Button className="bg-blue-500 hover:bg-blue-600 text-white" onClick={handleNext}>
-              Selanjutnya
-            </Button>
+            <NextButton onClick={handleNext} />
           ) : (
-            <Button className="bg-blue-500 hover:bg-blue-600 text-white" onClick={handleSave}>
-              Simpan
-            </Button>
+            <SaveButton onClick={handleSave} />
           )}
         </DialogFooter>
       </DialogContent>

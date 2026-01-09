@@ -75,7 +75,10 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu className="gap-2 px-2 mt-3">
               {items.map((item) => {
-                const isActive = pathname === item.url
+                // Use startsWith for child route matching, but exact match for dashboard home
+                const isActive = item.url === "/dashboard" 
+                  ? pathname === "/dashboard"
+                  : pathname.startsWith(item.url)
                 return (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton

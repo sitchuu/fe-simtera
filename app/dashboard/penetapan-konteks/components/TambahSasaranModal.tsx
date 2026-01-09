@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { Save } from "lucide-react"
 
 import {
     Dialog,
@@ -9,7 +8,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
+import { SaveButton } from "@/components/ui/action-buttons"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import {
@@ -41,7 +40,7 @@ const OBJEK_RISIKO = [
 export function TambahSasaranDialog({ isOpen, onClose }: TambahSasaranDialogProps) {
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="sm:max-w-[800px] p-0 gap-0 rounded-2xl">
+            <DialogContent className="sm:max-w-200 p-0 gap-0 rounded-2xl">
                 <DialogHeader className="px-8 pt-8 pb-4 flex flex-row items-center justify-between">
                     <DialogTitle className="text-2xl font-bold text-gray-700">
                         Tambah Sasaran
@@ -58,7 +57,7 @@ export function TambahSasaranDialog({ isOpen, onClose }: TambahSasaranDialogProp
                                 <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-md text-base text-gray-500">
                                     <SelectValue placeholder="Pilih Kode" />
                                 </SelectTrigger>
-                                <SelectContent className="z-[99999]">
+                                <SelectContent className="z-99999">
                                     <SelectItem value="a">a. Risiko fiskal</SelectItem>
                                     <SelectItem value="b">b. Risiko kebijakan</SelectItem>
                                     <SelectItem value="c">c. Risiko kepatuhan</SelectItem>
@@ -78,7 +77,7 @@ export function TambahSasaranDialog({ isOpen, onClose }: TambahSasaranDialogProp
                                 <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-md text-base text-gray-500">
                                     <SelectValue placeholder="Pilih Unit" />
                                 </SelectTrigger>
-                                <SelectContent className="z-[99999]">
+                                <SelectContent className="z-99999">
                                     {UNITS.map((unit) => (
                                         <SelectItem key={unit} value={unit}>
                                             {unit}
@@ -96,7 +95,7 @@ export function TambahSasaranDialog({ isOpen, onClose }: TambahSasaranDialogProp
                                 <SelectTrigger className="h-12 border-blue-300 focus:ring-blue-500 rounded-md text-base text-gray-500">
                                     <SelectValue placeholder="Pilih Objek" />
                                 </SelectTrigger>
-                                <SelectContent className="z-[99999]">
+                                <SelectContent className="z-99999">
                                     {OBJEK_RISIKO.map((item) => (
                                         <SelectItem key={item.code} value={item.code}>
                                             {item.label}
@@ -117,16 +116,13 @@ export function TambahSasaranDialog({ isOpen, onClose }: TambahSasaranDialogProp
                         <Textarea
                             id="uraian-sasaran"
                             placeholder="Masukkan Kode..."
-                            className="min-h-[120px] resize-none border-blue-300 focus-visible:ring-blue-500 text-base rounded-md placeholder:text-gray-300"
+                            className="min-h-30 resize-none border-blue-300 focus-visible:ring-blue-500 text-base rounded-md placeholder:text-gray-300"
                         />
                     </div>
                 </div>
 
                 <div className="px-8 py-6 flex justify-end">
-                    <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-8 py-6 text-base font-medium">
-                        <Save className="mr-2 h-5 w-5" />
-                        Simpan
-                    </Button>
+                    <SaveButton className="rounded-lg px-8 py-6 text-base font-medium" />
                 </div>
             </DialogContent>
         </Dialog>

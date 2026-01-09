@@ -184,7 +184,7 @@ export default function FormRTPPage() {
                         Kembali
                     </Link>
                 </Button>
-                <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 h-11 shadow-lg shadow-blue-500/20">
+                <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 h-11">
                     <Save className="mr-2 h-4 w-4" />
                     Simpan
                 </Button>
@@ -248,7 +248,7 @@ function TambahKegiatanModal({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                 </div>
 
                 <div className="px-8 py-6 flex justify-end">
-                    <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-8 py-2.5 text-sm font-medium shadow-lg shadow-blue-500/20">
+                    <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-8 py-2.5 text-sm font-medium">
                         <Save className="mr-2 h-4 w-4" />
                         Simpan
                     </Button>

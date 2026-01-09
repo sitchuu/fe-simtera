@@ -30,7 +30,7 @@ export default function PemantauanPage() {
             {/* HEADER */}
             <div>
                 <h1 className="text-3xl font-bold tracking-tight text-zinc-900">
-                    PEMANTAUAN (Monitoring)
+                    Pemantauan & Tinjau (Monitoring)
                 </h1>
                 <p className="text-gray-500 mt-2 text-base">
                     Halaman ini digunakan secara berkala (per Triwulan) untuk update progress.
